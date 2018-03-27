@@ -12,7 +12,7 @@
     
     <title>
         
-            tags | 
+            MySQL Workbench中PK,NN,UQ,BIN,UN,ZF,AI,G字段类型标识说明 | 
         
         zhaodongxx&#39;s Blog
     </title>
@@ -38,7 +38,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="zhaodongxx">
     <meta name="description" itemprop="description" content="罗马不是一天建成">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",MySQL Workbench,Mysql">
 
     <!-- Site Verification -->
     
@@ -67,15 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://blog.zhaodongxx.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="tags | zhaodongxx&#39;s Blog">
+    <meta property="og:title" content="MySQL Workbench中PK,NN,UQ,BIN,UN,ZF,AI,G字段类型标识说明 | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="罗马不是一天建成">
-    
+    <meta property="og:article:tag" content="MySQL Workbench"> <meta property="og:article:tag" content="Mysql"> 
 
+    
+        <meta property="article:published_time" content="3月 27, 2018" />
+        <meta property="article:modified_time" content="3月 27, 2018" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="tags | zhaodongxx&#39;s Blog">
+    <meta name="twitter:title" content="MySQL Workbench中PK,NN,UQ,BIN,UN,ZF,AI,G字段类型标识说明 | zhaodongxx&#39;s Blog">
     <meta name="twitter:description" content="罗马不是一天建成">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,13 +86,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://blog.zhaodongxx.top/tags/index.html" />
+        <link rel="canonical" href="http://blog.zhaodongxx.top/2018/03/27/MySQL-Workbench中PK-NN-UQ-BIN-UN-ZF-AI-G字段类型标识说明/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "zhaodongxx&#39;s Blog",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "zhaodongxx",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "MySQL Workbench中PK,NN,UQ,BIN,UN,ZF,AI,G字段类型标识说明",
+    "url": "http://blog.zhaodongxx.top/2018/03/27/MySQL-Workbench中PK-NN-UQ-BIN-UN-ZF-AI-G字段类型标识说明/index.html",
+    "datePublished": "3月 27, 2018",
+    "dateModified": "3月 27, 2018",
+    "description": "罗马不是一天建成",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://blog.zhaodongxx.top"
+    }
+}
+</script>
 
 
     
@@ -262,60 +295,242 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
 
 <!-- Layouts -->
 
-    <!-- Tags Cloud -->
-    <style>
-    #bottom{
-        position: relative;
-    }
+    <!-- Post Module -->
+    <div class="material-post_container">
 
-    @media screen and (max-width: 480px) {
-        .material-tagscloud{
-            margin: 6em 2em 0;
-        }
-    }
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
 
-    .material-tagscloud a{
-        text-decoration:none;
-        padding: 1px 9px;
-        margin: 9px 1px;
-        line-height: 40px;
-        white-space: nowrap;
-        transition: .6s;
-        opacity: .85;
-    }
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-    .material-tagscloud a:hover{
-        transition: .6s;
-        opacity: 1;
-        background: #FAFAFA;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    }
-</style>
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
 
-<div class=" material-tagscloud">
-    <div class="material-post mdl-grid">
-        <a href="/tags/Chrome插件/" style="font-size: 16px; color: #757575">Chrome插件</a> <a href="/tags/MySQL-Workbench/" style="font-size: 16px; color: #757575">MySQL Workbench</a> <a href="/tags/Mysql/" style="font-size: 16px; color: #757575">Mysql</a> <a href="/tags/Shadowsocks/" style="font-size: 16px; color: #757575">Shadowsocks</a> <a href="/tags/Ubuntu16-04/" style="font-size: 16px; color: #757575">Ubuntu16.04</a> <a href="/tags/生产力工具/" style="font-size: 16px; color: #757575">生产力工具</a>
+        
+    
+            <p class="article-headline-p">
+                MySQL Workbench中PK,NN,UQ,BIN,UN,ZF,AI,G字段类型标识说明
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
     </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>zhaodongxx</strong>
+        <span>3月 27, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/MySQL-Workbench/">MySQL Workbench</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Mysql/">Mysql</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=MySQL Workbench中PK,NN,UQ,BIN,UN,ZF,AI,G字段类型标识说明&url=http://blog.zhaodongxx.top/2018/03/27/MySQL-Workbench中PK-NN-UQ-BIN-UN-ZF-AI-G字段类型标识说明/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=MySQL Workbench中PK,NN,UQ,BIN,UN,ZF,AI,G字段类型标识说明&url=http://blog.zhaodongxx.top/2018/03/27/MySQL-Workbench中PK-NN-UQ-BIN-UN-ZF-AI-G字段类型标识说明/index.html&via=zhaodongxx" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhaodongxx.top/2018/03/27/MySQL-Workbench中PK-NN-UQ-BIN-UN-ZF-AI-G字段类型标识说明/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.zhaodongxx.top/2018/03/27/MySQL-Workbench中PK-NN-UQ-BIN-UN-ZF-AI-G字段类型标识说明/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <ul>
+<li>PK：primary key 主键</li>
+<li>NN：not null 非空</li>
+<li>UQ：unique 唯一索引</li>
+<li>BIN：binary 二进制数据(比text更大)</li>
+<li>UN：unsigned 无符号（非负数）</li>
+<li>ZF：zero fill 填充0 例如字段内容是1 int(4), 则内容显示为0001 </li>
+<li>AI：auto increment 自增</li>
+<li>G: Generated Column mysql5.7新特新：这一列由其他列计算而得</li>
+</ul>
+<blockquote>
+<p>关于Generated Column详细情况参考<a href="http://mingxinglai.com/cn/2015/12/mysql5.7-virtal-column/" target="_blank" rel="noopener">MySQL 5.7新特性之generated column</a></p>
+</blockquote>
+
+    
+
+    
 </div>
 
 
-<script type="text/ls-javascript" id="page-tagcloud-script">
-    var adjustFooter = function() {
-        if( ($('#bottom').offset().top + $('#bottom').outerHeight() ) < $(window).height() ) {
-            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
-            $('#bottom').css('bottom', '-' + footerBottom + 'px');
-        }
-    };
+                
 
-    $(document).ready(function() {
-        adjustFooter();
-    });
-</script>
+                <!-- Post Comments -->
+                
+                    
+    
 
+                
+            </div>
 
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/03/27/Window下的生产力工具/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
 
 
 
@@ -488,6 +703,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
