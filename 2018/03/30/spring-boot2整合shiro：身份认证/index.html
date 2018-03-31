@@ -37,7 +37,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="zhaodongxx">
-    <meta name="description" itemprop="description" content="前言本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。">
+    <meta name="description" itemprop="description" content="前言
+前言
+创建工程
+封装统一的返回值
+Hello World
+整合 Shiro
+导入 Shiro
+配置 Shiro
+自定义Shiro
+实现登录接口
+测试
+
+
+项目下载地址
+参考资料
+
+本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。">
     <meta name="keywords" content=",Spring Boot2,Shiro">
 
     <!-- Site Verification -->
@@ -69,7 +85,23 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Spring Boot2整合Shiro：身份认证 | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="前言本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。">
+    <meta property="og:description" content="前言
+前言
+创建工程
+封装统一的返回值
+Hello World
+整合 Shiro
+导入 Shiro
+配置 Shiro
+自定义Shiro
+实现登录接口
+测试
+
+
+项目下载地址
+参考资料
+
+本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。">
     <meta property="og:article:tag" content="Spring Boot2"> <meta property="og:article:tag" content="Shiro"> 
 
     
@@ -79,7 +111,23 @@
 
     <!-- The Twitter Card protocol -->
     <meta name="twitter:title" content="Spring Boot2整合Shiro：身份认证 | zhaodongxx&#39;s Blog">
-    <meta name="twitter:description" content="前言本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。">
+    <meta name="twitter:description" content="前言
+前言
+创建工程
+封装统一的返回值
+Hello World
+整合 Shiro
+导入 Shiro
+配置 Shiro
+自定义Shiro
+实现登录接口
+测试
+
+
+项目下载地址
+参考资料
+
+本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://blog.zhaodongxx.top" />
@@ -116,7 +164,23 @@
     "url": "http://blog.zhaodongxx.top/2018/03/30/spring-boot2整合shiro：身份认证/index.html",
     "datePublished": "3月 30, 2018",
     "dateModified": "3月 31, 2018",
-    "description": "前言本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。",
+    "description": "前言
+前言
+创建工程
+封装统一的返回值
+Hello World
+整合 Shiro
+导入 Shiro
+配置 Shiro
+自定义Shiro
+实现登录接口
+测试
+
+
+项目下载地址
+参考资料
+
+本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://blog.zhaodongxx.top"
@@ -479,11 +543,27 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。<br>本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。<a id="more"></a></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B">创建工程</a></li>
+<li><a href="#%E5%B0%81%E8%A3%85%E7%BB%9F%E4%B8%80%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC">封装统一的返回值</a></li>
+<li><a href="#hello-world">Hello World</a></li>
+<li><a href="#%E6%95%B4%E5%90%88-shiro">整合 Shiro</a><ul>
+<li><a href="#%E5%AF%BC%E5%85%A5-shiro">导入 Shiro</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE-shiro">配置 Shiro</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89shiro">自定义Shiro</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3">实现登录接口</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80">项目下载地址</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+</ul>
+<p>本文主要介绍了在Spring Boot2项目中整合Shiro实现登录认证。本文假设读者已经对Shiro和基于RBAC的权限控制系统有了基本的认识。<br>本项目没有数据库，也就没有dao层，所有的用户和密码均在Service层采用硬编码。<a id="more"></a></p>
 <blockquote>
 <p><strong>特别提醒</strong>：因为代码块中的<code>@</code>符号在博客发布过程中会导致代码格式混乱，所以<code>@</code>都是用双斜杠注释了。</p>
 </blockquote>
-<h2 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h2><p>通过idea的<code>Spring Initializr</code>新建工程<code>spring-boot2-shiro-project</code>，选择web模块即可。在项目根目录添加<code>service</code>、<code>controller</code>和<code>config</code>文件夹，项目目录如下图所示：<br><img src="/images/1.jpg" alt="项目目录"></p>
+<h2 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h2><p>通过 idea的<code>Spring Initializr</code>新建工程<code>spring-boot2-shiro-project</code>，选择web模块即可。在项目根目录添加<code>service</code>、<code>controller</code>和<code>config</code>文件夹，项目目录如下图所示：<br><img src="/images/1.jpg" alt="项目目录"></p>
 <h2 id="封装统一的返回值"><a href="#封装统一的返回值" class="headerlink" title="封装统一的返回值"></a>封装统一的返回值</h2><blockquote>
 <p>这一步对于整合shiro不是必须的</p>
 </blockquote>
@@ -812,14 +892,6 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/03/31/spring-boot2整合shiro：身份认证/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
@@ -955,7 +1027,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">7</span>
+                <span class="sidebar-badge">6</span>
             </a>
         </li>
         
