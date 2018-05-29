@@ -12,7 +12,7 @@
     
     <title>
         
-            Ubuntu16.04搭建Shadowsocks服务器 | 
+            使用Kettle实现数据实时增量同步 | 
         
         zhaodongxx&#39;s Blog
     </title>
@@ -38,7 +38,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="zhaodongxx">
     <meta name="description" itemprop="description" content="罗马不是一天建成">
-    <meta name="keywords" content=",Shadowsocks,Ubuntu16.04">
+    <meta name="keywords" content=",ETL,Kettle">
 
     <!-- Site Verification -->
     
@@ -67,18 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://blog.zhaodongxx.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Ubuntu16.04搭建Shadowsocks服务器 | zhaodongxx&#39;s Blog">
+    <meta property="og:title" content="使用Kettle实现数据实时增量同步 | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="罗马不是一天建成">
-    <meta property="og:article:tag" content="Shadowsocks"> <meta property="og:article:tag" content="Ubuntu16.04"> 
+    <meta property="og:article:tag" content="ETL"> <meta property="og:article:tag" content="Kettle"> 
 
     
-        <meta property="article:published_time" content="3月 26, 2018" />
-        <meta property="article:modified_time" content="3月 29, 2018" />
+        <meta property="article:published_time" content="5月 30, 2018" />
+        <meta property="article:modified_time" content="5月 30, 2018" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="Ubuntu16.04搭建Shadowsocks服务器 | zhaodongxx&#39;s Blog">
+    <meta name="twitter:title" content="使用Kettle实现数据实时增量同步 | zhaodongxx&#39;s Blog">
     <meta name="twitter:description" content="罗马不是一天建成">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -86,7 +86,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html" />
+        <link rel="canonical" href="http://blog.zhaodongxx.top/2018/05/30/使用Kettle实现-时间戳增量回滚同步/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -112,10 +112,10 @@
         },
         "description": "Hi, nice to meet you"
     },
-    "headline": "Ubuntu16.04搭建Shadowsocks服务器",
-    "url": "http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html",
-    "datePublished": "3月 26, 2018",
-    "dateModified": "3月 29, 2018",
+    "headline": "使用Kettle实现数据实时增量同步",
+    "url": "http://blog.zhaodongxx.top/2018/05/30/使用Kettle实现-时间戳增量回滚同步/index.html",
+    "datePublished": "5月 30, 2018",
+    "dateModified": "5月 30, 2018",
     "description": "罗马不是一天建成",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -320,7 +320,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装Shadowsocks"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 安装Shadowsocks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-配置shadowsocks-json"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 配置shadowsocks.json</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-启动-amp-关闭"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 启动 &amp; 关闭</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0-前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">0. 前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-时间戳增量回滚同步"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. 时间戳增量回滚同步</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-前期准备"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. 前期准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-作业流程"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. 作业流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-创建作业"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. 创建作业</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-创建作业和DB连接"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">4.1 创建作业和DB连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-建时间戳中间表"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">4.2 建时间戳中间表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-获取时间戳并设为变量"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">4.2 获取时间戳并设为变量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#表输入"><span class="post-toc-number">5.3.1.</span> <span class="post-toc-text">表输入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#设置变量"><span class="post-toc-number">5.3.2.</span> <span class="post-toc-text">设置变量</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-删除目标表中时间戳及时间戳以后的数据"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">4.3 删除目标表中时间戳及时间戳以后的数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-抽取、比对和更新数据"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">4.4 抽取、比对和更新数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#原始表输入"><span class="post-toc-number">5.5.1.</span> <span class="post-toc-text">原始表输入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#目标表输入"><span class="post-toc-number">5.5.2.</span> <span class="post-toc-text">目标表输入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#比对记录"><span class="post-toc-number">5.5.3.</span> <span class="post-toc-text">比对记录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Switch"><span class="post-toc-number">5.5.4.</span> <span class="post-toc-text">Switch</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#插入"><span class="post-toc-number">5.5.5.</span> <span class="post-toc-text">插入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#更新和删除"><span class="post-toc-number">5.5.6.</span> <span class="post-toc-text">更新和删除</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-5-更新时间戳"><span class="post-toc-number">5.6.</span> <span class="post-toc-text">4.5 更新时间戳</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-发送邮箱"><span class="post-toc-number">5.7.</span> <span class="post-toc-text">4.6 发送邮箱</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运行"><span class="post-toc-number">6.</span> <span class="post-toc-text">运行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">7.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -358,7 +358,7 @@
         
     
             <p class="article-headline-p">
-                Ubuntu16.04搭建Shadowsocks服务器
+                使用Kettle实现数据实时增量同步
             </p>
         </div>
 
@@ -377,7 +377,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>zhaodongxx</strong>
-        <span>3月 26, 2018</span>
+        <span>5月 30, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -401,7 +401,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Shadowsocks/">Shadowsocks</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Ubuntu16-04/">Ubuntu16.04</a>
+        <a class="post_tag-link" href="/tags/ETL/">ETL</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Kettle/">Kettle</a>
     </ul>
     
 
@@ -428,7 +428,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Ubuntu16.04搭建Shadowsocks服务器&url=http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=使用Kettle实现数据实时增量同步&url=http://blog.zhaodongxx.top/2018/05/30/使用Kettle实现-时间戳增量回滚同步/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -437,7 +437,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Ubuntu16.04搭建Shadowsocks服务器&url=http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html&via=zhaodongxx" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=使用Kettle实现数据实时增量同步&url=http://blog.zhaodongxx.top/2018/05/30/使用Kettle实现-时间戳增量回滚同步/index.html&via=zhaodongxx" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -446,7 +446,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhaodongxx.top/2018/05/30/使用Kettle实现-时间戳增量回滚同步/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -455,7 +455,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.zhaodongxx.top/2018/05/30/使用Kettle实现-时间戳增量回滚同步/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -479,42 +479,132 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="1-安装Shadowsocks"><a href="#1-安装Shadowsocks" class="headerlink" title="1. 安装Shadowsocks"></a>1. 安装Shadowsocks</h2><pre><code>apt-get update
-//安装python的包管理工具
-apt install python-pip
-//升级pip
-pip install --upgrade pip
-pip install setuptools
-//安装shadowsocks
-pip install shadowsocks
-</code></pre><h2 id="2-配置shadowsocks-json"><a href="#2-配置shadowsocks-json" class="headerlink" title="2. 配置shadowsocks.json"></a>2. 配置shadowsocks.json</h2><p>新建配置文件<code>shadowsocks.json</code>,路径<code>/home/ss/shadowsocks.json</code></p>
-<pre><code>
-mkdir ss
-cd ss
-sudo vim shadowsocks.json
+        <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>本文介绍了使用<code>Kettle</code>对一张业务表数据（500万条数据以上）进行实时（10秒）同步，采用了时间戳增量回滚同步的方法。关于ETL和Kettle的入门知识大家可以阅读相关的blog和文档学习。</p>
+<h2 id="1-时间戳增量回滚同步"><a href="#1-时间戳增量回滚同步" class="headerlink" title="1. 时间戳增量回滚同步"></a>1. 时间戳增量回滚同步</h2><p>假定在源数据表中有一个字段会记录数据的新增或修改时间，可以通过它对数据在时间维度上进行排序。通过中间表记录每次更新的时间戳，在下一个同步周期时，通过这个时间戳同步该时间戳以后的增量数据。</p>
+<p><strong>但是时间戳增量同步不能对源数据库中历史数据的删除操作进行同步</strong>，并且使用时间戳实时增量同步是不能完全避免这个问题的。我们仅仅可以通过在每次同步时，把时间戳回滚一定的时间段，从而同步一定时间段内的删除操作。<br>这就是时间戳增量回滚同步，这个名字是我自己给取得，就是在时间戳增量同步的同时回滚一定的时间段。</p>
+<p><strong>说明</strong>：</p>
+<ul>
+<li><strong>源数据表</strong> 需要被同步的数据表</li>
+<li><strong>目标数据表</strong> 同步至的数据表</li>
+<li><strong>中间表</strong> 存储时间戳的表</li>
+</ul>
+<h2 id="2-前期准备"><a href="#2-前期准备" class="headerlink" title="2. 前期准备"></a>2. 前期准备</h2><p>在两个数据库中分别创建数据表，并通过脚本在源数据表中插入500万条数据，完成后再以每秒一条的速度插入新数据，模拟生产环境。</p>
+<p>源数据表结构如下：</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>im_message<span class="token punctuation">`</span> <span class="token punctuation">(</span>
+  <span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  <span class="token punctuation">`</span>sender<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token keyword">COLLATE</span> utf8_bin <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'消息发送者：SYSTEM'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">`</span>send_time<span class="token punctuation">`</span> <span class="token keyword">datetime</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token punctuation">`</span>receiver<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token keyword">COLLATE</span> utf8_bin <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'消息接受者'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">`</span>content<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token keyword">COLLATE</span> utf8_bin <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'消息内容'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">`</span>is_read<span class="token punctuation">`</span> <span class="token keyword">tinyint</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'消息时候被读取：0-未读；非0-已读'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">`</span>read_time<span class="token punctuation">`</span> <span class="token keyword">datetime</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">UNIQUE</span> <span class="token keyword">KEY</span> <span class="token punctuation">`</span>id_UNIQUE<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">1</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8 <span class="token keyword">COLLATE</span><span class="token operator">=</span>utf8_bin <span class="token keyword">COMMENT</span><span class="token operator">=</span><span class="token string">'消息表'</span>
 
-</code></pre><p>格式参考<a href="https://github.com/shadowsocks/shadowsocks/wiki/Configuration-via-Config-File" target="_blank" rel="noopener">github官方实例</a></p>
-<pre><code>{                                      
-        &quot;server&quot;:&quot;you_server_ip&quot;,    
-        &quot;port_password&quot;:{              
-                &quot;8388&quot;:&quot;you_password&quot;,
-                &quot;8389&quot;:&quot;you_password&quot;,
-                &quot;8390&quot;:&quot;you_password&quot;,
-                &quot;8391&quot;:&quot;you_password&quot;,
-                &quot;8392&quot;:&quot;you_password&quot;
-        },                             
-        &quot;localhost_address&quot;:&quot;127.0.0.1&quot;
-        &quot;localhost&quot;:1080,              
-        &quot;timeout&quot;:300,                 
-        &quot;method&quot;:&quot;aes-256-cfb&quot;,        
-        &quot;fast_open&quot;:false,             
-        &quot;workers&quot;:100                  
-}                                      
-</code></pre><h2 id="3-启动-amp-关闭"><a href="#3-启动-amp-关闭" class="headerlink" title="3. 启动 &amp; 关闭"></a>3. 启动 &amp; 关闭</h2><p>后台启动</p>
-<pre><code>ssserver -c /home/ss/shadowsocks.json -d start
-</code></pre><p>关闭</p>
-<pre><code>ssserver -c /home/ss/shadowsocks.json -d stop
 </code></pre>
+<h2 id="3-作业流程"><a href="#3-作业流程" class="headerlink" title="3. 作业流程"></a>3. 作业流程</h2><ol>
+<li>开始组件</li>
+<li>建时间戳中间表</li>
+<li>获取中间表的时间戳，并设置为全局变量</li>
+<li>删除目标表中时间戳及时间戳以后的数据</li>
+<li>抽取两个数据表的时间戳及时间戳以后的数据进行比对，并根据比对结果进行删除、新增或修改操作</li>
+<li>更新时间戳</li>
+</ol>
+<h2 id="4-创建作业"><a href="#4-创建作业" class="headerlink" title="4. 创建作业"></a>4. 创建作业</h2><p>作业的最终截图如下：</p>
+<p><img src="../images/7_1.png" alt="作业截图"></p>
+<h3 id="4-1-创建作业和DB连接"><a href="#4-1-创建作业和DB连接" class="headerlink" title="4.1 创建作业和DB连接"></a>4.1 创建作业和DB连接</h3><p>打开Spoon工具，新建作业，然后在左侧主对象树DB连接中新建DB连接。连接创建并测试通过后可以在左侧DB连接下右键共享出来。因为在单个作业或者转换中新建的DB连接都是都是局域数据源，在其他转换和作业中是不能使用的，即使属于同一个作业下的不同转换，所以需要把他们共享，这样DB连接就会成为全局数据源，不用多次编辑。</p>
+<h3 id="4-2-建时间戳中间表"><a href="#4-2-建时间戳中间表" class="headerlink" title="4.2 建时间戳中间表"></a>4.2 建时间戳中间表</h3><p>这一步是为了在目标数据库中新建中间表<code>etl_temp</code>,并插入初始的时间戳字段。因为该作业在生产环境是循环调用的，该步骤在每一个同步周期中都会调用，所以在建表时需要判断该表是否已经存在，如果不存在才建表。</p>
+<p>SQL代码和组件配置截图如下：</p>
+<pre class=" language-SQL"><code class="language-SQL">CREATE TABLE IF NOT EXISTS etl_temp(id int primary key,time_stamp timestamp);
+INSERT IGNORE INTO etl_temp (id,time_stamp) VALUES (1,'2018-05-22 00:00:00');
+</code></pre>
+<p><img src="../images/7_2.png" alt="中间配置截图"></p>
+<blockquote>
+<p>我把该作业时间戳的ID设为1，在接下来的步骤中也是通过这个ID查询我们想要的时间戳</p>
+</blockquote>
+<h3 id="4-2-获取时间戳并设为变量"><a href="#4-2-获取时间戳并设为变量" class="headerlink" title="4.2 获取时间戳并设为变量"></a>4.2 获取时间戳并设为变量</h3><p>新建一个转换，在转换中使用表输入和设置变量两个组件</p>
+<h4 id="表输入"><a href="#表输入" class="headerlink" title="表输入"></a>表输入</h4><p><code>SQL</code>代码和组件配置截图如下</p>
+<p>在<code>Kettle</code>中设置的变量都是字符串类型，为了便于比较。我在SQL语句把查出的时间戳进行了格式转换</p>
+<pre class=" language-SQL"><code class="language-SQL">select date_format(time_stamp , '%Y-%m-%d %H:%i:%s') time_stamp from etl_temp where id='1'
+</code></pre>
+<p><img src="../images/7_3.png" alt="表输入配置截图"></p>
+<h4 id="设置变量"><a href="#设置变量" class="headerlink" title="设置变量"></a>设置变量</h4><p>变量活动类型可以为该变量设置四种有效活动范围，分别是JVM、该Job、父Job和祖父Job</p>
+<p><img src="../images/7_4.png" alt="配置截图"></p>
+<h3 id="4-3-删除目标表中时间戳及时间戳以后的数据"><a href="#4-3-删除目标表中时间戳及时间戳以后的数据" class="headerlink" title="4.3 删除目标表中时间戳及时间戳以后的数据"></a>4.3 删除目标表中时间戳及时间戳以后的数据</h3><p>这样做有两个好处：</p>
+<ol>
+<li><strong>避免在同步中重复或者遗漏数据</strong>。比如说上一次同步最后一个数据的时间戳是<code>2018-05-25 18:12:12</code>,这样本次同步周期结束后中间表中的时间戳就会是<code>2018-05-25 18:12:12</code>。如果在本次同步完成后 在源数据表中 仍然有时间戳为<code>2018-05-25 18:12:12</code>的新数据参数，那么在下一次同步周期时，就会出现BUG。采用大于时间戳的方式同步就会遗漏数据，采用等于时间戳的方式同步就会重复同步数据。</li>
+<li><strong>增加健壮性</strong> 当作业异常结束后，不用做任何多余的操作就可以重启。因为会删除目标表中时间戳及时间戳以后的数据，所以不用担心数据一致性问题</li>
+</ol>
+<p>在组件中使用了上一步骤设置的变量，所以必须勾选使用变量替换</p>
+<pre class=" language-SQL"><code class="language-SQL">delete from test_kettle.im_message where send_time>='${TIME_STAMP}'
+</code></pre>
+<p><img src="../images/7_5.png" alt="配置截图"></p>
+<h3 id="4-4-抽取、比对和更新数据"><a href="#4-4-抽取、比对和更新数据" class="headerlink" title="4.4 抽取、比对和更新数据"></a>4.4 抽取、比对和更新数据</h3><p>这一步才是真正的数据同步步骤，完成了数据的抽取、比对，并根据不同的比对结果删除、更新、插入或不做任何操作。<br>正如前文所说，为了同步删除操作，在原始表输入和目标表输入步骤中回滚了一定时间段。其中回滚的时间段设置为了全局的参数。左右空白处右键即可设置参数，该作业下的所有作业和转换都能使用，设置如下图</p>
+<p><img src="../images/7_7.png" alt="配置截图"></p>
+<p>转换截图如下</p>
+<p><img src="../images/7_6.png" alt="转换截图"></p>
+<h4 id="原始表输入"><a href="#原始表输入" class="headerlink" title="原始表输入"></a>原始表输入</h4><pre class=" language-SQL"><code class="language-SQL">SELECT
+  id
+, sender
+, send_time
+, receiver
+, content
+, is_read
+, read_time
+FROM ueqcsd.im_message
+where send_time>= date_sub(str_to_date('${TIME_STAMP}','%Y-%m-%d %H:%i:%s'), interval ${ROLL_BACK_DAYS} day);
+</code></pre>
+<p><img src="../images/7_8.png" alt="组件配置截图"></p>
+<h4 id="目标表输入"><a href="#目标表输入" class="headerlink" title="目标表输入"></a>目标表输入</h4><pre class=" language-SQL"><code class="language-SQL">SELECT
+  id
+, sender
+, send_time
+, receiver
+, content
+, is_read
+, read_time
+FROM test_kettle.im_message
+where send_time>= date_sub(str_to_date('${TIME_STAMP}','%Y-%m-%d %H:%i:%s'), interval ${ROLL_BACK_DAYS} day);
+</code></pre>
+<p><img src="../images/7_9.png" alt="组件配置截图"></p>
+<blockquote>
+<p>注意两个组件的数据库链接是不同的，当然它们也就这个和名字不同</p>
+</blockquote>
+<h4 id="比对记录"><a href="#比对记录" class="headerlink" title="比对记录"></a>比对记录</h4><p>对两个表输入查出的数据进行比对，并把比对的结果写进输入流，传递给后面的组件。<br>比对的结果有三种：</p>
+<ul>
+<li>new</li>
+<li>changed</li>
+<li>deleted</li>
+</ul>
+<p>标注字段表示比对结果的字段名，后面有用。关键字段表示比对的字段，在这个作业中我们比较两个的主键<code>ID</code>。</p>
+<p><img src="../images/7_10.png" alt="组件配置截图"></p>
+<h4 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h4><p>该步骤对上一步骤产生的标注字段进行路由，不同的结果路由到不同的步骤。其中目标步骤表示下一步骤的名字。</p>
+<p><img src="../images/7_11.png" alt="组件配置截图"></p>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p><code>Kettle</code>有一个插入/更新组件，但是据网友介绍这个组件性能低下，每秒最多只能同步几百条数据，所有我对插入和更新分别作了不同的处理。插入使用表输出组件；更新使用更新组件。<br>为了进一步提升同步效率，我在表输出组件使用了多线程（右键&gt;改变开始复制的数量），使同步速度达到每秒12000条。Switch组件和表输出组件中间的虚拟组件（空操作）也是为了使用多线程添加的。</p>
+<p><img src="../images/7_12.png" alt="组件配置截图"><br><img src="../images/7_13.png" alt="组件配置截图"></p>
+<blockquote>
+<p>勾选批量插入，可以极大提高同步速度</p>
+</blockquote>
+<h4 id="更新和删除"><a href="#更新和删除" class="headerlink" title="更新和删除"></a>更新和删除</h4><p><img src="../images/7_14.png" alt="组件配置截图"></p>
+<p><img src="../images/7_15.png" alt="组件配置截图"></p>
+<h3 id="4-5-更新时间戳"><a href="#4-5-更新时间戳" class="headerlink" title="4.5 更新时间戳"></a>4.5 更新时间戳</h3><pre class=" language-SQL"><code class="language-SQL">set @new_etl_start_time_stamp = (SELECT SEND_TIME FROM test_kettle.im_message ORDER BY SEND_TIME DESC LIMIT 1);
+update etl_temp set time_stamp=@new_etl_start_time_stamp where id='1';
+</code></pre>
+<p><img src="../images/7_16.png" alt="组件配置截图"></p>
+<h3 id="4-6-发送邮箱"><a href="#4-6-发送邮箱" class="headerlink" title="4.6 发送邮箱"></a>4.6 发送邮箱</h3><p>关于发送邮件组件网上有很多资料，就不多做介绍。特别强调一点，邮箱密码是 单独的授权码，而不是邮箱登录密码。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>在开发环境点击Spoon界面左上角三角符号运行作业即可。</p>
+<p>在第一次运行时，为了提高同步效率，可以先不创建目标表的索引。在第一此同步完成后，再创建索引。然后在START组件中编辑调度逻辑，再次启动。</p>
+<p>如下图所示</p>
+<p><img src="../images/7_17.png" alt="组件配置截图"></p>
+<p>这样，一个使用时间戳增量回滚同步数据的作业就完成了，如果对这个job有什么建议，可以给我发邮件<a href="mailto:`zhaodongxx@outlook.com" target="_blank" rel="noopener">`zhaodongxx@outlook.com</a>`。</p>
+<p>运行日志如下图</p>
+<p><img src="../images/7_18.png" alt="组件配置截图"></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.jianshu.com/p/66cefe5208a7" target="_blank" rel="noopener">Kettle中ETL的效率优化 简书</a></li>
+<li><a href="https://ask.hellobi.com/blog/yuguiyang1990/7289" target="_blank" rel="noopener">Kettle手册（九）- 发送邮件</a></li>
+</ul>
+
     
 
     
@@ -535,21 +625,13 @@ sudo vim shadowsocks.json
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/03/27/Window下的生产力工具/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2018/03/25/hello-world/" id="post_nav-older" class="next-content">
+        <a href="/2018/04/11/JavaBean转Map/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
