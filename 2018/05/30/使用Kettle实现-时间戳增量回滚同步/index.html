@@ -516,8 +516,8 @@
 <h3 id="4-1-创建作业和DB连接"><a href="#4-1-创建作业和DB连接" class="headerlink" title="4.1 创建作业和DB连接"></a>4.1 创建作业和DB连接</h3><p>打开Spoon工具，新建作业，然后在左侧主对象树DB连接中新建DB连接。连接创建并测试通过后可以在左侧DB连接下右键共享出来。因为在单个作业或者转换中新建的DB连接都是都是局域数据源，在其他转换和作业中是不能使用的，即使属于同一个作业下的不同转换，所以需要把他们共享，这样DB连接就会成为全局数据源，不用多次编辑。</p>
 <h3 id="4-2-建时间戳中间表"><a href="#4-2-建时间戳中间表" class="headerlink" title="4.2 建时间戳中间表"></a>4.2 建时间戳中间表</h3><p>这一步是为了在目标数据库中新建中间表<code>etl_temp</code>,并插入初始的时间戳字段。因为该作业在生产环境是循环调用的，该步骤在每一个同步周期中都会调用，所以在建表时需要判断该表是否已经存在，如果不存在才建表。</p>
 <p>SQL代码和组件配置截图如下：</p>
-<pre class=" language-SQL"><code class="language-SQL">CREATE TABLE IF NOT EXISTS etl_temp(id int primary key,time_stamp timestamp);
-INSERT IGNORE INTO etl_temp (id,time_stamp) VALUES (1,'2018-05-22 00:00:00');
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> etl_temp<span class="token punctuation">(</span>id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>time_stamp <span class="token keyword">timestamp</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">IGNORE</span> <span class="token keyword">INTO</span> etl_temp <span class="token punctuation">(</span>id<span class="token punctuation">,</span>time_stamp<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'2018-05-22 00:00:00'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p><img src="/images/7_2.png" alt="中间配置截图"></p>
 <blockquote>
@@ -526,7 +526,7 @@ INSERT IGNORE INTO etl_temp (id,time_stamp) VALUES (1,'2018-05-22 00:00:00');
 <h3 id="4-2-获取时间戳并设为变量"><a href="#4-2-获取时间戳并设为变量" class="headerlink" title="4.2 获取时间戳并设为变量"></a>4.2 获取时间戳并设为变量</h3><p>新建一个转换，在转换中使用表输入和设置变量两个组件</p>
 <h4 id="表输入"><a href="#表输入" class="headerlink" title="表输入"></a>表输入</h4><p><code>SQL</code>代码和组件配置截图如下</p>
 <p>在<code>Kettle</code>中设置的变量都是字符串类型，为了便于比较。我在SQL语句把查出的时间戳进行了格式转换</p>
-<pre class=" language-SQL"><code class="language-SQL">select date_format(time_stamp , '%Y-%m-%d %H:%i:%s') time_stamp from etl_temp where id='1'
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> date_format<span class="token punctuation">(</span>time_stamp <span class="token punctuation">,</span> <span class="token string">'%Y-%m-%d %H:%i:%s'</span><span class="token punctuation">)</span> time_stamp <span class="token keyword">from</span> etl_temp <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token string">'1'</span>
 </code></pre>
 <p><img src="/images/7_3.png" alt="表输入配置截图"></p>
 <h4 id="设置变量"><a href="#设置变量" class="headerlink" title="设置变量"></a>设置变量</h4><p>变量活动类型可以为该变量设置四种有效活动范围，分别是JVM、该Job、父Job和祖父Job</p>
@@ -537,35 +537,35 @@ INSERT IGNORE INTO etl_temp (id,time_stamp) VALUES (1,'2018-05-22 00:00:00');
 <li><strong>增加健壮性</strong> 当作业异常结束后，不用做任何多余的操作就可以重启。因为会删除目标表中时间戳及时间戳以后的数据，所以不用担心数据一致性问题</li>
 </ol>
 <p>在组件中使用了上一步骤设置的变量，所以必须勾选使用变量替换</p>
-<pre class=" language-SQL"><code class="language-SQL">delete from test_kettle.im_message where send_time>='${TIME_STAMP}'
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">delete</span> <span class="token keyword">from</span> test_kettle<span class="token punctuation">.</span>im_message <span class="token keyword">where</span> send_time<span class="token operator">>=</span><span class="token string">'${TIME_STAMP}'</span>
 </code></pre>
 <p><img src="/images/7_5.png" alt="配置截图"></p>
 <h3 id="4-4-抽取、比对和更新数据"><a href="#4-4-抽取、比对和更新数据" class="headerlink" title="4.4 抽取、比对和更新数据"></a>4.4 抽取、比对和更新数据</h3><p>这一步才是真正的数据同步步骤，完成了数据的抽取、比对，并根据不同的比对结果删除、更新、插入或不做任何操作。<br>正如前文所说，为了同步删除操作，在原始表输入和目标表输入步骤中回滚了一定时间段。其中回滚的时间段设置为了全局的参数。左右空白处右键即可设置参数，该作业下的所有作业和转换都能使用，设置如下图</p>
 <p><img src="/images/7_7.png" alt="配置截图"></p>
 <p>转换截图如下</p>
 <p><img src="/images/7_6.png" alt="转换截图"></p>
-<h4 id="原始表输入"><a href="#原始表输入" class="headerlink" title="原始表输入"></a>原始表输入</h4><pre class=" language-SQL"><code class="language-SQL">SELECT
+<h4 id="原始表输入"><a href="#原始表输入" class="headerlink" title="原始表输入"></a>原始表输入</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span>
   id
-, sender
-, send_time
-, receiver
-, content
-, is_read
-, read_time
-FROM ueqcsd.im_message
-where send_time>= date_sub(str_to_date('${TIME_STAMP}','%Y-%m-%d %H:%i:%s'), interval ${ROLL_BACK_DAYS} day);
+<span class="token punctuation">,</span> sender
+<span class="token punctuation">,</span> send_time
+<span class="token punctuation">,</span> receiver
+<span class="token punctuation">,</span> content
+<span class="token punctuation">,</span> is_read
+<span class="token punctuation">,</span> read_time
+<span class="token keyword">FROM</span> ueqcsd<span class="token punctuation">.</span>im_message
+<span class="token keyword">where</span> send_time<span class="token operator">>=</span> date_sub<span class="token punctuation">(</span>str_to_date<span class="token punctuation">(</span><span class="token string">'${TIME_STAMP}'</span><span class="token punctuation">,</span><span class="token string">'%Y-%m-%d %H:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> interval ${ROLL_BACK_DAYS} day<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p><img src="/images/7_8.png" alt="组件配置截图"></p>
-<h4 id="目标表输入"><a href="#目标表输入" class="headerlink" title="目标表输入"></a>目标表输入</h4><pre class=" language-SQL"><code class="language-SQL">SELECT
+<h4 id="目标表输入"><a href="#目标表输入" class="headerlink" title="目标表输入"></a>目标表输入</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span>
   id
-, sender
-, send_time
-, receiver
-, content
-, is_read
-, read_time
-FROM test_kettle.im_message
-where send_time>= date_sub(str_to_date('${TIME_STAMP}','%Y-%m-%d %H:%i:%s'), interval ${ROLL_BACK_DAYS} day);
+<span class="token punctuation">,</span> sender
+<span class="token punctuation">,</span> send_time
+<span class="token punctuation">,</span> receiver
+<span class="token punctuation">,</span> content
+<span class="token punctuation">,</span> is_read
+<span class="token punctuation">,</span> read_time
+<span class="token keyword">FROM</span> test_kettle<span class="token punctuation">.</span>im_message
+<span class="token keyword">where</span> send_time<span class="token operator">>=</span> date_sub<span class="token punctuation">(</span>str_to_date<span class="token punctuation">(</span><span class="token string">'${TIME_STAMP}'</span><span class="token punctuation">,</span><span class="token string">'%Y-%m-%d %H:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> interval ${ROLL_BACK_DAYS} day<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p><img src="/images/7_9.png" alt="组件配置截图"></p>
 <blockquote>
@@ -588,8 +588,8 @@ where send_time>= date_sub(str_to_date('${TIME_STAMP}','%Y-%m-%d %H:%i:%s'), int
 </blockquote>
 <h4 id="更新和删除"><a href="#更新和删除" class="headerlink" title="更新和删除"></a>更新和删除</h4><p><img src="/images/7_14.png" alt="组件配置截图"></p>
 <p><img src="/images/7_15.png" alt="组件配置截图"></p>
-<h3 id="4-5-更新时间戳"><a href="#4-5-更新时间戳" class="headerlink" title="4.5 更新时间戳"></a>4.5 更新时间戳</h3><pre class=" language-SQL"><code class="language-SQL">set @new_etl_start_time_stamp = (SELECT SEND_TIME FROM test_kettle.im_message ORDER BY SEND_TIME DESC LIMIT 1);
-update etl_temp set time_stamp=@new_etl_start_time_stamp where id='1';
+<h3 id="4-5-更新时间戳"><a href="#4-5-更新时间戳" class="headerlink" title="4.5 更新时间戳"></a>4.5 更新时间戳</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">set</span> <span class="token variable">@new_etl_start_time_stamp</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> SEND_TIME <span class="token keyword">FROM</span> test_kettle<span class="token punctuation">.</span>im_message <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> SEND_TIME <span class="token keyword">DESC</span> <span class="token keyword">LIMIT</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">update</span> etl_temp <span class="token keyword">set</span> time_stamp<span class="token operator">=</span><span class="token variable">@new_etl_start_time_stamp</span> <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">;</span>
 </code></pre>
 <p><img src="/images/7_16.png" alt="组件配置截图"></p>
 <h3 id="4-6-发送邮箱"><a href="#4-6-发送邮箱" class="headerlink" title="4.6 发送邮箱"></a>4.6 发送邮箱</h3><p>关于发送邮件组件网上有很多资料，就不多做介绍。特别强调一点，邮箱密码是 单独的授权码，而不是邮箱登录密码。</p>
