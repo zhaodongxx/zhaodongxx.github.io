@@ -12,7 +12,7 @@
     
     <title>
         
-            归档: 2018/5 | 
+            归档: 2018/7 | 
         
         zhaodongxx&#39;s Blog
     </title>
@@ -67,7 +67,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://blog.zhaodongxx.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2018/5 | zhaodongxx&#39;s Blog">
+    <meta property="og:title" content="归档: 2018/7 | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="罗马不是一天建成">
     
@@ -75,7 +75,7 @@
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="归档: 2018/5 | zhaodongxx&#39;s Blog">
+    <meta name="twitter:title" content="归档: 2018/7 | zhaodongxx&#39;s Blog">
     <meta name="twitter:description" content="罗马不是一天建成">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,7 +83,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://blog.zhaodongxx.top/archives/2018/05/index.html" />
+        <link rel="canonical" href="http://blog.zhaodongxx.top/archives/2018/07/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -283,17 +283,37 @@
     
 
         <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/05/30/使用Kettle实现-时间戳增量回滚同步/">使用Kettle实现数据实时增量同步</a></p>
+        <p class="article-headline-p"><a href="/2018/07/18/spring-boot2整合shiro：加密/">spring-boot2整合shiro：加密</a></p>
     </div>
 
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            0. 前言本文介绍了使用Kettle对一张业务表数据（500万条数据以上）进行实时（10秒）同步，采用了时间戳增量回滚同步的方法。关于ETL和Kettle的入门知识大家可以阅读相关的blog和文档学习。
+            废话因为新项目没有继续用shiro框架，再加上人比较懒，所以就没有再写新的关于shiro的文章。但是今天发现已经有几个朋友在github上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+前言上一篇文章，我们用spring boot2框架搭建了一个web项目，并且使用shiro作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在shiro中怎么使用MD5、MD5加盐、Bcrypt等三种逐渐进步的方法加密密码。
+密码存储演进史在上一篇文章中我们保存在系统的用户密码还是明文，这显然是很不合理和不专业的做法。作为一名工程师 专业自然是必须的。  
+常用的做法是使用加密算法对用户密码加密然后存储数据库，当用户登录时，对用户密码使用相同的算法进行加密，然后与数据库中的密文进行比对。作为一个合格专业的系统有两点需要保证：
+
+用户账号不易被破解
+系统不能保存用户密码原文
+
+关于密码存储演进史这篇文章讲的很好，朋友们可以看一下。从文章中我们知道密码储存大概分为几个阶段：
+
+明文储存
+单向hash（md5、sha256）
+单向hash加盐
+慢加密算法(Bcrypt、Scrypt)
+
+单向hash算法，保证了即时是系统管理员也不能轻易的通过密文算出密码原文。但是单向hash还是有两个致命的缺点：
+
+相同的密码，hash值一样
+不同的密码生成的hash值也可能相同(hash碰撞)。虽然几率非常小
+
+仅仅使用单向hash是非常不安全的。改进的措施是引入一个随机的因子掺杂进明文中进行 hash 计算，这样的随机因子通常被称之为盐 （salt）。salt 一般是用户相关的，且要保证在一个系统内每一个用户的盐都不相同，这样就可以保证即使密码相同，hash值也一定不相同。一般的做法是用用户表中的主键作为盐。因为在我们这个工程中没有数据库，所以我们把用户名的BSAE64编码作为盐来示范一下。
         
         &nbsp;&nbsp;&nbsp;
         <span>
-            <a href="/2018/05/30/使用Kettle实现-时间戳增量回滚同步/" target="_self">阅读全文</a>
+            <a href="/2018/07/18/spring-boot2整合shiro：加密/" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -305,20 +325,151 @@
             </div>
             <div>
                 <strong>zhaodongxx</strong>
-                <span>5月 30, 2018</span>
+                <span>7月 18, 2018</span>
             </div>
         </div>
         <div id="post_entry-right-info">
             <!-- Category -->
             <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/ETL/">ETL</a>
+                <a class="post_category-link" href="/categories/Shiro/">Shiro</a>
             </span>
 
             
                 <!-- Comment Number -->
                 &nbsp;|&nbsp;
                 <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2018/05/30/使用Kettle实现-时间戳增量回滚同步/" data-count-type="comments"></span>
+                        <span class="ds-thread-count" data-thread-key="2018/07/18/spring-boot2整合shiro：加密/" data-count-type="comments"></span>
+                </span>
+            
+
+            
+
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
+    </div>
+</div>
+
+            
+            
+        
+    
+        
+            
+                <!-- Paradox Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+        
+    
+
+        <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2018/07/18/加密/">加密</a></p>
+    </div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2018/07/18/加密/" target="_self">阅读全文</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.png" width="44px" height="44px" alt="zhaodongxx's avatar">
+            </div>
+            <div>
+                <strong>zhaodongxx</strong>
+                <span>7月 18, 2018</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+            <!-- Category -->
+            <span class="post_entry-category">
+                
+            </span>
+
+            
+                <!-- Comment Number -->
+                &nbsp;|&nbsp;
+                <span class="post_entry-comment" >
+                        <span class="ds-thread-count" data-thread-key="2018/07/18/加密/" data-count-type="comments"></span>
+                </span>
+            
+
+            
+
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
+    </div>
+</div>
+
+            
+            
+        
+    
+        
+            
+                <!-- Paradox Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+        
+    
+
+        <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2018/07/17/UML类图/">UML类图</a></p>
+    </div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            #
+UML类图简介UML是Unified Modeling Language的缩写，翻译为中文是“统一建模语言”，它是面向对象软件的标准化建模语言。它是一个支持模型化和软件系统开发的图形化语言，为软件开发的所有阶段提供模型化和可视化支持，包括由需求分析到规格，到构造和配置。
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2018/07/17/UML类图/" target="_self">阅读全文</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.png" width="44px" height="44px" alt="zhaodongxx's avatar">
+            </div>
+            <div>
+                <strong>zhaodongxx</strong>
+                <span>7月 17, 2018</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+            <!-- Category -->
+            <span class="post_entry-category">
+                <a class="post_category-link" href="/categories/设计模式/">设计模式</a>
+            </span>
+
+            
+                <!-- Comment Number -->
+                &nbsp;|&nbsp;
+                <span class="post_entry-comment" >
+                        <span class="ds-thread-count" data-thread-key="2018/07/17/UML类图/" data-count-type="comments"></span>
                 </span>
             
 
@@ -438,7 +589,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/ETL/">ETL<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Shiro/">Shiro<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/服务器/">服务器<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/生产力/">生产力<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Shiro/">Shiro<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/服务器/">服务器<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/生产力/">生产力<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -472,7 +623,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">9</span>
+                <span class="sidebar-badge">11</span>
             </a>
         </li>
         
