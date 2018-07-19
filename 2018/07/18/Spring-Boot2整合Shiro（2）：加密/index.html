@@ -12,7 +12,7 @@
     
     <title>
         
-            在线工具索引 | 
+            Spring Boot2整合Shiro（2）：加密 | 
         
         zhaodongxx&#39;s Blog
     </title>
@@ -37,8 +37,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="zhaodongxx">
-    <meta name="description" itemprop="description" content="罗马不是一天建成">
-    <meta name="keywords" content=",工具,生产力,索引">
+    <meta name="description" itemprop="description" content="废话因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。">
+    <meta name="keywords" content=",Spring Boot2,Shiro">
 
     <!-- Site Verification -->
     
@@ -67,26 +68,28 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://blog.zhaodongxx.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="在线工具索引 | zhaodongxx&#39;s Blog">
+    <meta property="og:title" content="Spring Boot2整合Shiro（2）：加密 | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="罗马不是一天建成">
-    <meta property="og:article:tag" content="工具"> <meta property="og:article:tag" content="生产力"> <meta property="og:article:tag" content="索引"> 
+    <meta property="og:description" content="废话因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。">
+    <meta property="og:article:tag" content="Spring Boot2"> <meta property="og:article:tag" content="Shiro"> 
 
     
-        <meta property="article:published_time" content="3月 29, 2018" />
-        <meta property="article:modified_time" content="3月 29, 2018" />
+        <meta property="article:published_time" content="7月 18, 2018" />
+        <meta property="article:modified_time" content="7月 19, 2018" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="在线工具索引 | zhaodongxx&#39;s Blog">
-    <meta name="twitter:description" content="罗马不是一天建成">
+    <meta name="twitter:title" content="Spring Boot2整合Shiro（2）：加密 | zhaodongxx&#39;s Blog">
+    <meta name="twitter:description" content="废话因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://blog.zhaodongxx.top" />
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://blog.zhaodongxx.top/2018/03/29/在线工具索引/index.html" />
+        <link rel="canonical" href="http://blog.zhaodongxx.top/2018/07/18/Spring-Boot2整合Shiro（2）：加密/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -112,11 +115,12 @@
         },
         "description": "Hi, nice to meet you"
     },
-    "headline": "在线工具索引",
-    "url": "http://blog.zhaodongxx.top/2018/03/29/在线工具索引/index.html",
-    "datePublished": "3月 29, 2018",
-    "dateModified": "3月 29, 2018",
-    "description": "罗马不是一天建成",
+    "headline": "Spring Boot2整合Shiro（2）：加密",
+    "url": "http://blog.zhaodongxx.top/2018/07/18/Spring-Boot2整合Shiro（2）：加密/index.html",
+    "datePublished": "7月 18, 2018",
+    "dateModified": "7月 19, 2018",
+    "description": "废话因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://blog.zhaodongxx.top"
@@ -320,7 +324,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在线工具"><span class="post-toc-number">1.</span> <span class="post-toc-text">在线工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#待补充"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">待补充</span></a></li></ol></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#废话"><span class="post-toc-number">1.</span> <span class="post-toc-text">废话</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">2.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#密码存储演进史"><span class="post-toc-number">3.</span> <span class="post-toc-text">密码存储演进史</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单项hash算法"><span class="post-toc-number">4.</span> <span class="post-toc-text">单项hash算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注册用户"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">注册用户</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#为Shiro配置加密算法"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">为Shiro配置加密算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#单向hash加盐"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">单向hash加盐</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Bcrypt"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">Bcrypt</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目下载地址"><span class="post-toc-number">5.</span> <span class="post-toc-text">项目下载地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -358,7 +362,7 @@
         
     
             <p class="article-headline-p">
-                在线工具索引
+                Spring Boot2整合Shiro（2）：加密
             </p>
         </div>
 
@@ -377,7 +381,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>zhaodongxx</strong>
-        <span>3月 29, 2018</span>
+        <span>7月 18, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -401,7 +405,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/工具/">工具</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/生产力/">生产力</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/索引/">索引</a>
+        <a class="post_tag-link" href="/tags/Shiro/">Shiro</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Spring-Boot2/">Spring Boot2</a>
     </ul>
     
 
@@ -428,7 +432,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=在线工具索引&url=http://blog.zhaodongxx.top/2018/03/29/在线工具索引/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Spring Boot2整合Shiro（2）：加密&url=http://blog.zhaodongxx.top/2018/07/18/Spring-Boot2整合Shiro（2）：加密/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -437,7 +441,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=在线工具索引&url=http://blog.zhaodongxx.top/2018/03/29/在线工具索引/index.html&via=zhaodongxx" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Spring Boot2整合Shiro（2）：加密&url=http://blog.zhaodongxx.top/2018/07/18/Spring-Boot2整合Shiro（2）：加密/index.html&via=zhaodongxx" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -446,7 +450,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhaodongxx.top/2018/03/29/在线工具索引/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhaodongxx.top/2018/07/18/Spring-Boot2整合Shiro（2）：加密/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -455,7 +459,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.zhaodongxx.top/2018/03/29/在线工具索引/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.zhaodongxx.top/2018/07/18/Spring-Boot2整合Shiro（2）：加密/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -479,11 +483,314 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="在线工具"><a href="#在线工具" class="headerlink" title="在线工具"></a>在线工具</h2><ul>
-<li><a href="http://cron.qqe2.com/" target="_blank" rel="noopener">在线Cron表达式生成器</a></li>
-<li><a href="http://patorjk.com/software/taag" target="_blank" rel="noopener">制作个性化字符串图像 </a></li>
+        <h2 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h2><p>因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。</p>
+<a id="more"></a>
+<h2 id="密码存储演进史"><a href="#密码存储演进史" class="headerlink" title="密码存储演进史"></a>密码存储演进史</h2><p>在上一篇文章中我们保存在系统的用户密码还是明文，这显然是很不合理和不专业的做法。作为一名工程师 专业自然是必须的。  </p>
+<p>常用的做法是使用加密算法对用户密码加密然后存储数据库，当用户登录时，对用户密码使用相同的算法进行加密，然后与数据库中的密文进行比对。作为一个合格专业的系统有两点需要保证：</p>
+<ol>
+<li>用户账号不易被破解</li>
+<li>系统不能保存用户密码原文</li>
+</ol>
+<p>关于<strong>密码存储演进史</strong><a href="https://www.cnkirito.moe/spring-security-6/" target="_blank" rel="noopener">这篇文章</a>讲的很好，朋友们可以看一下。从文章中我们知道密码储存大概分为几个阶段：</p>
+<ul>
+<li>明文储存</li>
+<li>单向 hash（md5、sha256）</li>
+<li>单向 has h加盐</li>
+<li>慢加密算法(Bcrypt、Scrypt)</li>
 </ul>
-<h4 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h4>
+<h2 id="单项hash算法"><a href="#单项hash算法" class="headerlink" title="单项hash算法"></a>单项hash算法</h2><h3 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h3><p>因为要演示使用 Shiro 对密码进行加密，上一节中的那种保存密码的方式非常不方便。在这一节我们添加一个用户注册的接口，使用用户对象保存用户名和用户密码并且用一个集合保存系统已注册的用户。</p>
+<p>新建用户类，并重写<code>toString</code>方法。</p>
+<pre class=" language-Java"><code class="language-Java">
+package top.zhaodongxx.domain;
+
+/**
+ * @author zhaodong zhaodongxx@outlook.com
+ * @version v1.0
+ * @since 2018/7/19 10:40
+ */
+public class User {
+    private String username;
+    private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+}
+
+</code></pre>
+<p>在 <code>ShiroService</code> 类中添加新增用户的方法 <code>addUser</code> ,我们使用 <code>SimpleHash</code> 类使用 MD5 加密算法对密码进行加密,然后在提供一个通过用户名查询用户的方法，用于后面的登录验证。</p>
+<pre class=" language-Java"><code class="language-Java">
+package top.zhaodongxx.service;
+
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.springframework.stereotype.Service;
+import top.zhaodongxx.domain.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * <P></P>
+ *
+ * @author zhaodong zhaodongxx@outlook.com
+ * @version v1.0
+ * @since 2018/3/30 22:59
+ */
+@Service
+public class ShiroService {
+
+    public static List<User> userList = new ArrayList<User>();
+
+    public String getPasswordByUsername(String username) {
+        switch (username) {
+            case "liming":
+                return "123";
+            case "hanli":
+                return "456";
+            default:
+                return null;
+        }
+    }
+
+    //根据用户名查询用户
+    public User getUserByUsername(String username) {
+        System.out.println("登陆的用户 " + username);
+        for (User user : userList) {
+            if (username.equals(user.getUsername())) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    //添加用户
+    public User addUser(String username, String password) {
+        //通过MD5的方式加密密码
+        String newpwd = new SimpleHash("MD5", password).toHex();
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(newpwd);
+
+        userList.add(user);
+
+        System.out.println(user);
+        return user;
+    }
+}
+
+</code></pre>
+<p>新建注册控制器类 <code>RegisterController</code> ,并提供注册接口 <code>/register</code> 。</p>
+<pre class=" language-Java"><code class="language-Java">
+package top.zhaodongxx.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+import top.zhaodongxx.domain.User;
+import top.zhaodongxx.result.Result;
+import top.zhaodongxx.result.ResultGenerator;
+import top.zhaodongxx.service.ShiroService;
+
+import javax.annotation.Resource;
+
+/**
+ * @author zhaodong zhaodongxx@outlook.com
+ * @version v1.0
+ * @since 2018/7/19 10:53
+ */
+@RestController
+public class RegisterController {
+
+    @Resource
+    private ShiroService shiroService;
+
+    @PostMapping("/register")
+    public Result register(String username, String password) {
+
+        User user = shiroService.addUser(username, password);
+        return ResultGenerator.genSuccessResult(user).setMessage("注册成功");
+    }
+}
+
+</code></pre>
+<p>如下体所示到这一步，我们就已经新建了一个用户注册的接口。</p>
+<p><img src="/images/8_1.png" alt="图片"></p>
+<h3 id="为Shiro配置加密算法"><a href="#为Shiro配置加密算法" class="headerlink" title="为Shiro配置加密算法"></a>为Shiro配置加密算法</h3><p>配置hash算法加密主要分为三步：</p>
+<ul>
+<li>创建凭证匹配器 <code>HashedCredentialsMatcher</code></li>
+<li>为我们自定义的 <code>MyShiroRealm</code> Bean 添加凭证匹配器 <code>HashedCredentialsMatcher</code></li>
+<li>修改 <code>MyShiroRealm</code> 中 <code>doGetAuthenticationInfo</code> 方法的获取用户的方法</li>
+</ul>
+<p>在 Shiro 配置文件 <code>ShiroConfig</code> 中创建凭证匹配器 <code>HashedCredentialsMatcher</code></p>
+<pre class=" language-Java"><code class="language-Java">
+/**
+    * 凭证匹配器
+    *
+    * @return
+    */
+@Bean
+public HashedCredentialsMatcher hashedCredentialsMatcher() {
+    HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+    /**
+        * hash算法:这里使用MD5算法;
+        */
+    hashedCredentialsMatcher.setHashAlgorithmName("MD5");
+    /**
+        * 散列的次数，比如散列两次，相当于 md5(md5(""));
+        */
+    hashedCredentialsMatcher.setHashIterations(1);
+
+    return hashedCredentialsMatcher;
+}
+
+</code></pre>
+<p>在 Shiro 配置文件 <code>ShiroConfig</code> 中为我们自定义的 <code>MyShiroRealm</code> Bean 添加凭证匹配器 <code>HashedCredentialsMatcher</code></p>
+<pre class=" language-Java"><code class="language-Java">
+/**
+    * 自定义的Realm
+    */
+@Bean(name = "myShiroRealm")
+public MyShiroRealm myShiroRealm(){
+    MyShiroRealm myShiroRealm = new MyShiroRealm();
+    myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+    return myShiroRealm;
+}
+
+</code></pre>
+<p>修改 <code>MyShiroRealm</code> 中 <code>doGetAuthenticationInfo</code> 方法</p>
+<pre class=" language-Java"><code class="language-Java">
+@Override
+protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+    //获取用户账号
+    String username = token.getPrincipal().toString();
+
+    User user = shiroService.getUserByUsername(username);
+    if (!ObjectUtils.isEmpty(user)) {
+
+        String realmName = getName();
+        return new SimpleAuthenticationInfo(username, user.getPassword(), realmName);
+    }
+    return null;
+}
+
+</code></pre>
+<p>到目前为止，我们已经成功的为 Shiro 配置了 MD5 这种加密方式。<br>下面我们来测试一下，先重启项目，注册新的账号，然后等新账号登录。如下图所示，登录成功。</p>
+<p><img src="/images/8_2.png" alt="图片"><br><img src="/images/8_3.png" alt="图片"></p>
+<h3 id="单向hash加盐"><a href="#单向hash加盐" class="headerlink" title="单向hash加盐"></a>单向hash加盐</h3><p>单向hash算法，保证了即使是系统管理员也不能轻易的通过密文反推出密码原文。但是单向 hash 还是有个致命的缺点：<strong>相同的密码，hash值一样</strong>。</p>
+<p>改进的措施是引入一个 <strong>随机的因子</strong> 掺杂进明文中进行 hash 计算，这样的随机因子通常被称之为盐 （salt）。salt 一般是用户相关的，且要保证在一个系统内每一个用户的盐都不相同，这样就可以保证即使密码相同，hash 值也一定不相同。一般的做法是用用户表中的主键作为盐。因为在我们这个工程中没有数据库，所以我们把用户名作为盐来示范一下。</p>
+<p>为 Shiro 的单项 hash 算法加上盐需要两步：</p>
+<ul>
+<li>修改注册用户的加密算法</li>
+<li>修改 <code>MyShiroRealm</code> 类中 <code>doGetAuthenticationInfo</code> 方法的返回值 <code>SimpleAuthenticationInfo</code> 的新建方法参数：盐</li>
+</ul>
+<p>修改注册用户的加密算法</p>
+<pre class=" language-Java"><code class="language-Java">String newpwd = new SimpleHash("MD5", password, ByteSource.Util.bytes(username)).toHex();
+</code></pre>
+<pre class=" language-Java"><code class="language-Java">
+@Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        //获取用户账号
+        String username = token.getPrincipal().toString();
+
+        User user = shiroService.getUserByUsername(username);
+        if (!ObjectUtils.isEmpty(user)) {
+
+            /**
+             * 四个参数
+             * principal：认证的实体信息，可以是username，也可以是数据库表对应的用户的实体对象
+             * credentials：数据库中的密码（经过加密的密码）
+             * credentialsSalt：盐值（使用用户名）
+             * realmName：当前realm对象的name，调用父类的getName()方法即可
+             */
+
+            String realmName = getName();
+            String credentials = user.getPassword();
+            ByteSource credentialsSalt = ByteSource.Util.bytes(username);
+
+            return new SimpleAuthenticationInfo(username, credentials, credentialsSalt, realmName);
+        }
+        return null;
+    }
+
+</code></pre>
+<h3 id="Bcrypt"><a href="#Bcrypt" class="headerlink" title="Bcrypt"></a>Bcrypt</h3><p>Shiro 框架没有内置 BCrypt 。需要我们引入新的库 <code>jBCrypt</code>:</p>
+<pre class=" language-XML"><code class="language-XML">
+<dependency>
+    <groupId>de.svenkubiak</groupId>
+    <artifactId>jBCrypt</artifactId>
+    <version>0.4.1</version>
+</dependency>
+
+</code></pre>
+<p>在注册用户时修改加密方式,在 BCrypt 中我们不需要为每个用户分配不同的盐，只要使用 <code>BCrypt.gensalt()</code> 就可以生成盐。</p>
+<pre class=" language-Java"><code class="language-Java">
+public String encodeByBCrypt(String password) {
+    return BCrypt.hashpw(password, BCrypt.gensalt());
+}
+
+</code></pre>
+<p>在 Shiro 配置文件 <code>ShiroConfig</code> 中为我们自定义的 <code>MyShiroRealm</code> Bean 添加凭证匹配器 <code>HashedCredentialsMatcher</code>。</p>
+<pre class=" language-Java"><code class="language-Java">
+/**
+    * 自定义的Realm
+    */
+@Bean(name = "myShiroRealm")
+public MyShiroRealm myShiroRealm() {
+    MyShiroRealm myShiroRealm = new MyShiroRealm();
+    //配置单项hash
+    //myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+
+    //配置 BCrypt
+    myShiroRealm.setCredentialsMatcher(new CredentialsMatcher() {
+        @Override
+        public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
+            UsernamePasswordToken userToken = (UsernamePasswordToken) token;
+            //要验证的明文密码
+            String plaintext = new String(userToken.getPassword());
+            //数据库中的加密后的密文
+            String hashed = info.getCredentials().toString();
+
+            return BCrypt.checkpw(plaintext, hashed);
+        }
+    });
+    return myShiroRealm;
+}
+
+</code></pre>
+<p>到此为止，我们使用 BCrypt 算法加密了密码。如下图所示：</p>
+<p><img src="/images/8_4.png" alt="图片"><br><img src="/images/8_5.png" alt="图片"><br><img src="/images/8_6.png" alt="图片"></p>
+<p>可以发现，相同密码加密两次后的密文是不一样的。</p>
+<p>至此，为 <code>Shiro</code> 使用 <code>BCrypt</code> 算法加密了密码。</p>
+<h2 id="项目下载地址"><a href="#项目下载地址" class="headerlink" title="项目下载地址"></a>项目下载地址</h2><ul>
+<li><strong>github</strong>: <a href="https://github.com/zhaodongxx/spring-boot2-shiro-project" target="_blank" rel="noopener">spring-boot2-shiro-project</a></li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.cnkirito.moe/spring-security-6/" target="_blank" rel="noopener">该如何设计你的 PasswordEncoder?</a></li>
+<li><a href="https://blog.csdn.net/zhangbohun/article/details/78077670" target="_blank" rel="noopener">Shiro使用笔记</a></li>
+<li><a href="https://github.com/qq53182347/liugh-parent" target="_blank" rel="noopener">liugh-parent –GitHub</a></li>
+</ul>
+
     
 
     
@@ -504,21 +811,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/03/30/Spring-Boot2整合Shiro（1）：身份认证/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2018/03/27/MySQL-Workbench中PK-NN-UQ-BIN-UN-ZF-AI-G字段类型标识说明/" id="post_nav-older" class="next-content">
+        <a href="/2018/07/18/加密/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

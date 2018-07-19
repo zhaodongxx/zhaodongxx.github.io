@@ -283,37 +283,18 @@
     
 
         <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/07/18/spring-boot2整合shiro：加密/">spring-boot2整合shiro：加密</a></p>
+        <p class="article-headline-p"><a href="/2018/07/18/Spring-Boot2整合Shiro（2）：加密/">Spring Boot2整合Shiro（2）：加密</a></p>
     </div>
 
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            废话因为新项目没有继续用shiro框架，再加上人比较懒，所以就没有再写新的关于shiro的文章。但是今天发现已经有几个朋友在github上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
-前言上一篇文章，我们用spring boot2框架搭建了一个web项目，并且使用shiro作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在shiro中怎么使用MD5、MD5加盐、Bcrypt等三种逐渐进步的方法加密密码。
-密码存储演进史在上一篇文章中我们保存在系统的用户密码还是明文，这显然是很不合理和不专业的做法。作为一名工程师 专业自然是必须的。  
-常用的做法是使用加密算法对用户密码加密然后存储数据库，当用户登录时，对用户密码使用相同的算法进行加密，然后与数据库中的密文进行比对。作为一个合格专业的系统有两点需要保证：
-
-用户账号不易被破解
-系统不能保存用户密码原文
-
-关于密码存储演进史这篇文章讲的很好，朋友们可以看一下。从文章中我们知道密码储存大概分为几个阶段：
-
-明文储存
-单向hash（md5、sha256）
-单向hash加盐
-慢加密算法(Bcrypt、Scrypt)
-
-单向hash算法，保证了即时是系统管理员也不能轻易的通过密文算出密码原文。但是单向hash还是有两个致命的缺点：
-
-相同的密码，hash值一样
-不同的密码生成的hash值也可能相同(hash碰撞)。虽然几率非常小
-
-仅仅使用单向hash是非常不安全的。改进的措施是引入一个随机的因子掺杂进明文中进行 hash 计算，这样的随机因子通常被称之为盐 （salt）。salt 一般是用户相关的，且要保证在一个系统内每一个用户的盐都不相同，这样就可以保证即使密码相同，hash值也一定不相同。一般的做法是用用户表中的主键作为盐。因为在我们这个工程中没有数据库，所以我们把用户名的BSAE64编码作为盐来示范一下。
+            废话因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。
         
         &nbsp;&nbsp;&nbsp;
         <span>
-            <a href="/2018/07/18/spring-boot2整合shiro：加密/" target="_self">阅读全文</a>
+            <a href="/2018/07/18/Spring-Boot2整合Shiro（2）：加密/" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -338,7 +319,7 @@
                 <!-- Comment Number -->
                 &nbsp;|&nbsp;
                 <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2018/07/18/spring-boot2整合shiro：加密/" data-count-type="comments"></span>
+                        <span class="ds-thread-count" data-thread-key="2018/07/18/Spring-Boot2整合Shiro（2）：加密/" data-count-type="comments"></span>
                 </span>
             
 
