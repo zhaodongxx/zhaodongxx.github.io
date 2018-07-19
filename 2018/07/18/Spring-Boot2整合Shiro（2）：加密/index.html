@@ -37,7 +37,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="zhaodongxx">
-    <meta name="description" itemprop="description" content="因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+    <meta name="description" itemprop="description" content="因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
 前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。">
     <meta name="keywords" content=",Spring Boot2,Shiro">
 
@@ -70,7 +70,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Spring Boot2整合Shiro（2）：加密 | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+    <meta property="og:description" content="因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
 前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。">
     <meta property="og:article:tag" content="Spring Boot2"> <meta property="og:article:tag" content="Shiro"> 
 
@@ -81,7 +81,7 @@
 
     <!-- The Twitter Card protocol -->
     <meta name="twitter:title" content="Spring Boot2整合Shiro（2）：加密 | zhaodongxx&#39;s Blog">
-    <meta name="twitter:description" content="因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+    <meta name="twitter:description" content="因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
 前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -119,7 +119,7 @@
     "url": "http://blog.zhaodongxx.top/2018/07/18/Spring-Boot2整合Shiro（2）：加密/index.html",
     "datePublished": "7月 18, 2018",
     "dateModified": "7月 19, 2018",
-    "description": "因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
+    "description": "因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的
 前言上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -483,7 +483,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上的给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的</p>
+        <p>因为新项目没有继续用Shiro框架，再加上人比较懒，所以就没有再写新的关于 Shiro 的文章。但是今天发现已经有几个朋友在 GitHub 上给示例项目加星，也有留言咨询的。我很高兴这篇文章能够帮到大家，也再次让我感受到把在工作中学到的东西写出来，和大家分享是这么一件令人高兴的事，用知乎上的话说这是一件长半衰期的事。我会继续写下去的</p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇文章，我们用 Spring Boot2 框架搭建了一个 web 项目，并且使用 Shiro 作为安全管理框架实现了用户的身份认证，也就是登录。这篇文章首先简要介绍了密码储存的演进史，然后结合代码介绍了在 Shiro 中怎么使用 MD5、MD5 加盐、 Bcrypt 等三种逐渐进步的方法加密密码。</p>
 <a id="more"></a>
 <h2 id="密码存储演进史"><a href="#密码存储演进史" class="headerlink" title="密码存储演进史"></a>密码存储演进史</h2><p>在上一篇文章中我们保存在系统的用户密码还是明文，这显然是很不合理和不专业的做法。作为一名工程师 专业自然是必须的。  </p>
