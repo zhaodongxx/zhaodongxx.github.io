@@ -483,111 +483,111 @@
 <h2 id="官方代码"><a href="#官方代码" class="headerlink" title="官方代码"></a>官方代码</h2><blockquote>
 <p>蚂蚁框架的官方文档代码，我的代码见最后</p>
 </blockquote>
-<pre class=" language-javaScript"><code class="language-javaScript">
-import { Table } from 'antd';
+<pre class=" language-javascript"><code class="language-javascript">
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Table <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'antd'</span><span class="token punctuation">;</span>
 
-// In the fifth row, other columns are merged into first column
-// by setting it's colSpan to be 0
-const renderContent = (value, row, index) => {
-  const obj = {
-    children: value,
-    props: {},
-  };
-  if (index === 4) {
-    obj.props.colSpan = 0;
-  }
-  return obj;
-};
+<span class="token comment" spellcheck="true">// In the fifth row, other columns are merged into first column</span>
+<span class="token comment" spellcheck="true">// by setting it's colSpan to be 0</span>
+<span class="token keyword">const</span> renderContent <span class="token operator">=</span> <span class="token punctuation">(</span>value<span class="token punctuation">,</span> row<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    children<span class="token punctuation">:</span> value<span class="token punctuation">,</span>
+    props<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    obj<span class="token punctuation">.</span>props<span class="token punctuation">.</span>colSpan <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  render: (text, row, index) => {
-    if (index < 4) {
-      return <a href="javascript:;">{text}</a>;
-    }
-    return {
-      children: <a href="javascript:;">{text}</a>,
-      props: {
-        colSpan: 5,
-      },
-    };
-  },
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-  render: renderContent,
-}, {
-  title: 'Home phone',
-  colSpan: 2,
-  dataIndex: 'tel',
-  render: (value, row, index) => {
-    const obj = {
-      children: value,
-      props: {},
-    };
-    if (index === 2) {
-      obj.props.rowSpan = 2;
-    }
-    // These two are merged into above cell
-    if (index === 3) {
-      obj.props.rowSpan = 0;
-    }
-    if (index === 4) {
-      obj.props.colSpan = 0;
-    }
-    return obj;
-  },
-}, {
-  title: 'Phone',
-  colSpan: 0,
-  dataIndex: 'phone',
-  render: renderContent,
-}, {
-  title: 'Address',
-  dataIndex: 'address',
-  render: renderContent,
-}];
+<span class="token keyword">const</span> columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'Name'</span><span class="token punctuation">,</span>
+  dataIndex<span class="token punctuation">:</span> <span class="token string">'name'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> <span class="token punctuation">(</span>text<span class="token punctuation">,</span> row<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"javascript:;"</span><span class="token operator">></span><span class="token punctuation">{</span>text<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      children<span class="token punctuation">:</span> <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"javascript:;"</span><span class="token operator">></span><span class="token punctuation">{</span>text<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span><span class="token punctuation">,</span>
+      props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        colSpan<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'Age'</span><span class="token punctuation">,</span>
+  dataIndex<span class="token punctuation">:</span> <span class="token string">'age'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> renderContent<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'Home phone'</span><span class="token punctuation">,</span>
+  colSpan<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  dataIndex<span class="token punctuation">:</span> <span class="token string">'tel'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">,</span> row<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      children<span class="token punctuation">:</span> value<span class="token punctuation">,</span>
+      props<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      obj<span class="token punctuation">.</span>props<span class="token punctuation">.</span>rowSpan <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// These two are merged into above cell</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      obj<span class="token punctuation">.</span>props<span class="token punctuation">.</span>rowSpan <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      obj<span class="token punctuation">.</span>props<span class="token punctuation">.</span>colSpan <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'Phone'</span><span class="token punctuation">,</span>
+  colSpan<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  dataIndex<span class="token punctuation">:</span> <span class="token string">'phone'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> renderContent<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'Address'</span><span class="token punctuation">,</span>
+  dataIndex<span class="token punctuation">:</span> <span class="token string">'address'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> renderContent<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  tel: '0571-22098909',
-  phone: 18889898989,
-  address: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  tel: '0571-22098333',
-  phone: 18889898888,
-  age: 42,
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  age: 32,
-  tel: '0575-22098909',
-  phone: 18900010002,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '4',
-  name: 'Jim Red',
-  age: 18,
-  tel: '0575-22098909',
-  phone: 18900010002,
-  address: 'London No. 2 Lake Park',
-}, {
-  key: '5',
-  name: 'Jake White',
-  age: 18,
-  tel: '0575-22098909',
-  phone: 18900010002,
-  address: 'Dublin No. 2 Lake Park',
-}];
+<span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'1'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'John Brown'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">32</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0571-22098909'</span><span class="token punctuation">,</span>
+  phone<span class="token punctuation">:</span> <span class="token number">18889898989</span><span class="token punctuation">,</span>
+  address<span class="token punctuation">:</span> <span class="token string">'New York No. 1 Lake Park'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'2'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'Jim Green'</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0571-22098333'</span><span class="token punctuation">,</span>
+  phone<span class="token punctuation">:</span> <span class="token number">18889898888</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">42</span><span class="token punctuation">,</span>
+  address<span class="token punctuation">:</span> <span class="token string">'London No. 1 Lake Park'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'3'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'Joe Black'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">32</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0575-22098909'</span><span class="token punctuation">,</span>
+  phone<span class="token punctuation">:</span> <span class="token number">18900010002</span><span class="token punctuation">,</span>
+  address<span class="token punctuation">:</span> <span class="token string">'Sidney No. 1 Lake Park'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'4'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'Jim Red'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0575-22098909'</span><span class="token punctuation">,</span>
+  phone<span class="token punctuation">:</span> <span class="token number">18900010002</span><span class="token punctuation">,</span>
+  address<span class="token punctuation">:</span> <span class="token string">'London No. 2 Lake Park'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'5'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'Jake White'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0575-22098909'</span><span class="token punctuation">,</span>
+  phone<span class="token punctuation">:</span> <span class="token number">18900010002</span><span class="token punctuation">,</span>
+  address<span class="token punctuation">:</span> <span class="token string">'Dublin No. 2 Lake Park'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-// 因为hexo 格式问题，暂时注释
-<!-- ReactDOM.render(<Table columns={columns} dataSource={data} bordered />,mountNode); -->
+<span class="token comment" spellcheck="true">// 因为hexo 格式问题，暂时注释</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Table columns<span class="token operator">=</span><span class="token punctuation">{</span>columns<span class="token punctuation">}</span> dataSource<span class="token operator">=</span><span class="token punctuation">{</span>data<span class="token punctuation">}</span> bordered <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span>mountNode<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">--</span><span class="token operator">></span>
 
 </code></pre>
 <h2 id="动态合并行代码示例"><a href="#动态合并行代码示例" class="headerlink" title="动态合并行代码示例"></a>动态合并行代码示例</h2><p>因为在网上也没有找到合适的解决方案，所以把自己的实现分享出来，希望对大家有所帮助。</p>
@@ -595,118 +595,118 @@ const data = [{
 <blockquote>
 <p>表格数据中被合并的列应该是经过排序的，保证所有相同的行都呆在一起能够被合并</p>
 </blockquote>
-<pre class=" language-javaScript"><code class="language-javaScript">
-const { Table } = antd;
+<pre class=" language-js"><code class="language-js">
+<span class="token keyword">const</span> <span class="token punctuation">{</span> Table <span class="token punctuation">}</span> <span class="token operator">=</span> antd<span class="token punctuation">;</span>
 
-// In the fifth row, other columns are merged into first column
-// by setting it's colSpan to be 0
-const renderContent = (value, row, index) => {
-  const obj = {
-    children: value,
-    props: {},
-  };
-  return obj;
-};
-
-
-const data = [{
-  key: '1',
-  name: 'A',
-  age: 32,
-  tel: '0571-22098909'
-}, {
-  key: '2',
-  name: 'A',
-  age:12,
-  tel: '0571-22098333'
-}, {
-  key: '3',
-  name: 'B',
-  age: 32,
-  tel: '0575-22098909'
-}, {
-  key: '4',
-  name: 'B',
-  age: 18,
-  tel: '0575-22098909'
-}, {
-  key: '5',
-  name: 'B',
-  age: 18,
-  tel: '0575-5'
-}, {
-  key: '6',
-  name: 'C',
-  tel: '0571-6',
-  age:12
-}, {
-  key: '7',
-  name: 'C',
-  tel: '0571-7',
-  age:19
-}];
-
-var myArray=new Array(data.length);
-
-console.error(data.length);
+<span class="token comment" spellcheck="true">// In the fifth row, other columns are merged into first column</span>
+<span class="token comment" spellcheck="true">// by setting it's colSpan to be 0</span>
+<span class="token keyword">const</span> renderContent <span class="token operator">=</span> <span class="token punctuation">(</span>value<span class="token punctuation">,</span> row<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    children<span class="token punctuation">:</span> value<span class="token punctuation">,</span>
+    props<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 
-var func =(data)=>{
-  //保存上一个name
-  var x = "";
-  //相同name出现的次数
-  var count = 0;
-  //该name第一次出现的位置
-  var startindex=0;
+<span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'1'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'A'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">32</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0571-22098909'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'2'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'A'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0571-22098333'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'3'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'B'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">32</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0575-22098909'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'4'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'B'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0575-22098909'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'5'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'B'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0575-5'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'6'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'C'</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0571-6'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span><span class="token number">12</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'7'</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'C'</span><span class="token punctuation">,</span>
+  tel<span class="token punctuation">:</span> <span class="token string">'0571-7'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span><span class="token number">19</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-  for(var i = 0;i<data.length;i++){
-    //这里是合并name列，根据各自情况大家可以自己完善
-    var val = data[(i)].name;
-    if(i==0){
-      x=val;
-      count=1;
-      myArray[0]=1
-    }else{
-      if(val==x){
-        count++;
-        myArray[startindex]=count;
-        myArray[i]=0
-      }else{
-        count = 1;
-        x=val;
-        startindex=i;
-        myArray[i]=1
-      }
-    }
-  }
-}
+<span class="token keyword">var</span> myArray<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-func(data)
-console.table(myArray)
+console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  render: (value, row, index) => {
-    const obj = {
-      children: value,
-      props: {},
-    };
-    obj.props.rowSpan = myArray[index];
-    return obj
-  },
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-  render: renderContent,
-}, {
-  title: 'Home phone',
-  dataIndex: 'tel',
-  render: renderContent,
-}];
 
-// 因为hexo 格式问题，暂时注释
-<!-- ReactDOM.render(<Table columns={columns} dataSource={data} bordered />,mountNode); -->
+<span class="token keyword">var</span> func <span class="token operator">=</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//保存上一个name</span>
+  <span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">//相同name出现的次数</span>
+  <span class="token keyword">var</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">//该name第一次出现的位置</span>
+  <span class="token keyword">var</span> startindex<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>data<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//这里是合并name列，根据各自情况大家可以自己完善</span>
+    <span class="token keyword">var</span> val <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      x<span class="token operator">=</span>val<span class="token punctuation">;</span>
+      count<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+      myArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>val<span class="token operator">==</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        count<span class="token operator">++</span><span class="token punctuation">;</span>
+        myArray<span class="token punctuation">[</span>startindex<span class="token punctuation">]</span><span class="token operator">=</span>count<span class="token punctuation">;</span>
+        myArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span>
+      <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        count <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        x<span class="token operator">=</span>val<span class="token punctuation">;</span>
+        startindex<span class="token operator">=</span>i<span class="token punctuation">;</span>
+        myArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">func</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">table</span><span class="token punctuation">(</span>myArray<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'Name'</span><span class="token punctuation">,</span>
+  dataIndex<span class="token punctuation">:</span> <span class="token string">'name'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">,</span> row<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      children<span class="token punctuation">:</span> value<span class="token punctuation">,</span>
+      props<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    obj<span class="token punctuation">.</span>props<span class="token punctuation">.</span>rowSpan <span class="token operator">=</span> myArray<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> obj
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'Age'</span><span class="token punctuation">,</span>
+  dataIndex<span class="token punctuation">:</span> <span class="token string">'age'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> renderContent<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'Home phone'</span><span class="token punctuation">,</span>
+  dataIndex<span class="token punctuation">:</span> <span class="token string">'tel'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> renderContent<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 因为hexo 格式问题，暂时注释 ReactDOM.render(...)</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Table columns<span class="token operator">=</span><span class="token punctuation">{</span>columns<span class="token punctuation">}</span> dataSource<span class="token operator">=</span><span class="token punctuation">{</span>data<span class="token punctuation">}</span> bordered <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span>mountNode<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">--</span><span class="token operator">></span>
 
 </code></pre>
 
