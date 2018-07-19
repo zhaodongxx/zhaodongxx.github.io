@@ -501,137 +501,137 @@
 </ul>
 <h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><h3 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h3><p>因为要演示使用 Shiro 对密码进行加密，上一节中的那种保存密码的方式非常不方便。在这一节我们添加一个用户注册的接口，使用用户对象保存用户名和用户密码并且用一个集合保存系统已注册的用户。</p>
 <p>新建用户类，并重写<code>toString</code>方法。</p>
-<pre class=" language-Java"><code class="language-Java">
-package top.zhaodongxx.domain;
+<pre class=" language-java"><code class="language-java">
+<span class="token keyword">package</span> top<span class="token punctuation">.</span>zhaodongxx<span class="token punctuation">.</span>domain<span class="token punctuation">;</span>
 
-/**
+<span class="token comment" spellcheck="true">/**
  * @author zhaodong zhaodongxx@outlook.com
  * @version v1.0
  * @since 2018/7/19 10:40
- */
-public class User {
-    private String username;
-    private String password;
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String username<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String password<span class="token punctuation">;</span>
 
-    public String getUsername() {
-        return username;
-    }
+    <span class="token keyword">public</span> String <span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> username<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUsername</span><span class="token punctuation">(</span>String username<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>username <span class="token operator">=</span> username<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public String getPassword() {
-        return password;
-    }
+    <span class="token keyword">public</span> String <span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> password<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPassword</span><span class="token punctuation">(</span>String password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>password <span class="token operator">=</span> password<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-}
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"User{"</span> <span class="token operator">+</span>
+                <span class="token string">"username='"</span> <span class="token operator">+</span> username <span class="token operator">+</span> <span class="token string">'\''</span> <span class="token operator">+</span>
+                <span class="token string">", password='"</span> <span class="token operator">+</span> password <span class="token operator">+</span> <span class="token string">'\''</span> <span class="token operator">+</span>
+                <span class="token string">'}'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 </code></pre>
 <p>在 <code>ShiroService</code> 类中添加新增用户的方法 <code>addUser</code> ,我们使用 <code>SimpleHash</code> 类使用 MD5 加密算法对密码进行加密,然后在提供一个通过用户名查询用户的方法，用于后面的登录验证。</p>
-<pre class=" language-Java"><code class="language-Java">
-package top.zhaodongxx.service;
+<pre class=" language-java"><code class="language-java">
+<span class="token keyword">package</span> top<span class="token punctuation">.</span>zhaodongxx<span class="token punctuation">.</span>service<span class="token punctuation">;</span>
 
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.springframework.stereotype.Service;
-import top.zhaodongxx.domain.User;
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>hash<span class="token punctuation">.</span>SimpleHash<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span>Service<span class="token punctuation">;</span>
+<span class="token keyword">import</span> top<span class="token punctuation">.</span>zhaodongxx<span class="token punctuation">.</span>domain<span class="token punctuation">.</span>User<span class="token punctuation">;</span>
 
-import java.util.ArrayList;
-import java.util.List;
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
 
-/**
- * <P></P>
+<span class="token comment" spellcheck="true">/**
+ * &lt;P>&lt;/P>
  *
  * @author zhaodong zhaodongxx@outlook.com
  * @version v1.0
  * @since 2018/3/30 22:59
- */
-@Service
-public class ShiroService {
+ */</span>
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShiroService</span> <span class="token punctuation">{</span>
 
-    public static List<User> userList = new ArrayList<User>();
+    <span class="token keyword">public</span> <span class="token keyword">static</span> List<span class="token operator">&lt;</span>User<span class="token operator">></span> userList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    public String getPasswordByUsername(String username) {
-        switch (username) {
-            case "liming":
-                return "123";
-            case "hanli":
-                return "456";
-            default:
-                return null;
-        }
-    }
+    <span class="token keyword">public</span> String <span class="token function">getPasswordByUsername</span><span class="token punctuation">(</span>String username<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>username<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token string">"liming"</span><span class="token operator">:</span>
+                <span class="token keyword">return</span> <span class="token string">"123"</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token string">"hanli"</span><span class="token operator">:</span>
+                <span class="token keyword">return</span> <span class="token string">"456"</span><span class="token punctuation">;</span>
+            <span class="token keyword">default</span><span class="token operator">:</span>
+                <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    //根据用户名查询用户
-    public User getUserByUsername(String username) {
-        System.out.println("登陆的用户 " + username);
-        for (User user : userList) {
-            if (username.equals(user.getUsername())) {
-                return user;
-            }
-        }
-        return null;
-    }
+    <span class="token comment" spellcheck="true">//根据用户名查询用户</span>
+    <span class="token keyword">public</span> User <span class="token function">getUserByUsername</span><span class="token punctuation">(</span>String username<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"登陆的用户 "</span> <span class="token operator">+</span> username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>User user <span class="token operator">:</span> userList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>username<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> user<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //添加用户
-    public User addUser(String username, String password) {
-        //通过MD5的方式加密密码
-        String newpwd = new SimpleHash("MD5", password).toHex();
+    <span class="token comment" spellcheck="true">//添加用户</span>
+    <span class="token keyword">public</span> User <span class="token function">addUser</span><span class="token punctuation">(</span>String username<span class="token punctuation">,</span> String password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//通过MD5的方式加密密码</span>
+        String newpwd <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleHash</span><span class="token punctuation">(</span><span class="token string">"MD5"</span><span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(newpwd);
+        User user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        user<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        user<span class="token punctuation">.</span><span class="token function">setPassword</span><span class="token punctuation">(</span>newpwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        userList.add(user);
+        userList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        System.out.println(user);
-        return user;
-    }
-}
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> user<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 </code></pre>
 <p>新建注册控制器类 <code>RegisterController</code> ,并提供注册接口 <code>/register</code> 。</p>
-<pre class=" language-Java"><code class="language-Java">
-package top.zhaodongxx.controller;
+<pre class=" language-java"><code class="language-java">
+<span class="token keyword">package</span> top<span class="token punctuation">.</span>zhaodongxx<span class="token punctuation">.</span>controller<span class="token punctuation">;</span>
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import top.zhaodongxx.domain.User;
-import top.zhaodongxx.result.Result;
-import top.zhaodongxx.result.ResultGenerator;
-import top.zhaodongxx.service.ShiroService;
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>PostMapping<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RestController<span class="token punctuation">;</span>
+<span class="token keyword">import</span> top<span class="token punctuation">.</span>zhaodongxx<span class="token punctuation">.</span>domain<span class="token punctuation">.</span>User<span class="token punctuation">;</span>
+<span class="token keyword">import</span> top<span class="token punctuation">.</span>zhaodongxx<span class="token punctuation">.</span>result<span class="token punctuation">.</span>Result<span class="token punctuation">;</span>
+<span class="token keyword">import</span> top<span class="token punctuation">.</span>zhaodongxx<span class="token punctuation">.</span>result<span class="token punctuation">.</span>ResultGenerator<span class="token punctuation">;</span>
+<span class="token keyword">import</span> top<span class="token punctuation">.</span>zhaodongxx<span class="token punctuation">.</span>service<span class="token punctuation">.</span>ShiroService<span class="token punctuation">;</span>
 
-import javax.annotation.Resource;
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Resource<span class="token punctuation">;</span>
 
-/**
+<span class="token comment" spellcheck="true">/**
  * @author zhaodong zhaodongxx@outlook.com
  * @version v1.0
  * @since 2018/7/19 10:53
- */
-@RestController
-public class RegisterController {
+ */</span>
+<span class="token annotation punctuation">@RestController</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RegisterController</span> <span class="token punctuation">{</span>
 
-    @Resource
-    private ShiroService shiroService;
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token keyword">private</span> ShiroService shiroService<span class="token punctuation">;</span>
 
-    @PostMapping("/register")
-    public Result register(String username, String password) {
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/register"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> Result <span class="token function">register</span><span class="token punctuation">(</span>String username<span class="token punctuation">,</span> String password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-        User user = shiroService.addUser(username, password);
-        return ResultGenerator.genSuccessResult(user).setMessage("注册成功");
-    }
-}
+        User user <span class="token operator">=</span> shiroService<span class="token punctuation">.</span><span class="token function">addUser</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ResultGenerator<span class="token punctuation">.</span><span class="token function">genSuccessResult</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setMessage</span><span class="token punctuation">(</span><span class="token string">"注册成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 </code></pre>
 <p>如下体所示到这一步，我们就已经新建了一个用户注册的接口。</p>
@@ -643,56 +643,56 @@ public class RegisterController {
 <li>修改 <code>MyShiroRealm</code> 中 <code>doGetAuthenticationInfo</code> 方法的获取用户的方法</li>
 </ul>
 <p>在 Shiro 配置文件 <code>ShiroConfig</code> 中创建凭证匹配器 <code>HashedCredentialsMatcher</code></p>
-<pre class=" language-Java"><code class="language-Java">
-/**
+<pre class=" language-java"><code class="language-java">
+<span class="token comment" spellcheck="true">/**
     * 凭证匹配器
     *
     * @return
-    */
-@Bean
-public HashedCredentialsMatcher hashedCredentialsMatcher() {
-    HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-    /**
+    */</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> HashedCredentialsMatcher <span class="token function">hashedCredentialsMatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    HashedCredentialsMatcher hashedCredentialsMatcher <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashedCredentialsMatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
         * hash算法:这里使用MD5算法;
-        */
-    hashedCredentialsMatcher.setHashAlgorithmName("MD5");
-    /**
+        */</span>
+    hashedCredentialsMatcher<span class="token punctuation">.</span><span class="token function">setHashAlgorithmName</span><span class="token punctuation">(</span><span class="token string">"MD5"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
         * 散列的次数，比如散列两次，相当于 md5(md5(""));
-        */
-    hashedCredentialsMatcher.setHashIterations(1);
+        */</span>
+    hashedCredentialsMatcher<span class="token punctuation">.</span><span class="token function">setHashIterations</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return hashedCredentialsMatcher;
-}
+    <span class="token keyword">return</span> hashedCredentialsMatcher<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 </code></pre>
 <p>在 Shiro 配置文件 <code>ShiroConfig</code> 中为我们自定义的 <code>MyShiroRealm</code> Bean 添加凭证匹配器 <code>HashedCredentialsMatcher</code></p>
-<pre class=" language-Java"><code class="language-Java">
-/**
+<pre class=" language-java"><code class="language-java">
+<span class="token comment" spellcheck="true">/**
     * 自定义的Realm
-    */
-@Bean(name = "myShiroRealm")
-public MyShiroRealm myShiroRealm(){
-    MyShiroRealm myShiroRealm = new MyShiroRealm();
-    myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-    return myShiroRealm;
-}
+    */</span>
+<span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"myShiroRealm"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> MyShiroRealm <span class="token function">myShiroRealm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    MyShiroRealm myShiroRealm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyShiroRealm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    myShiroRealm<span class="token punctuation">.</span><span class="token function">setCredentialsMatcher</span><span class="token punctuation">(</span><span class="token function">hashedCredentialsMatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> myShiroRealm<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 </code></pre>
 <p>修改 <code>MyShiroRealm</code> 中 <code>doGetAuthenticationInfo</code> 方法</p>
-<pre class=" language-Java"><code class="language-Java">
-@Override
-protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-    //获取用户账号
-    String username = token.getPrincipal().toString();
+<pre class=" language-java"><code class="language-java">
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> AuthenticationInfo <span class="token function">doGetAuthenticationInfo</span><span class="token punctuation">(</span>AuthenticationToken token<span class="token punctuation">)</span> <span class="token keyword">throws</span> AuthenticationException <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//获取用户账号</span>
+    String username <span class="token operator">=</span> token<span class="token punctuation">.</span><span class="token function">getPrincipal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    User user = shiroService.getUserByUsername(username);
-    if (!ObjectUtils.isEmpty(user)) {
+    User user <span class="token operator">=</span> shiroService<span class="token punctuation">.</span><span class="token function">getUserByUsername</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-        String realmName = getName();
-        return new SimpleAuthenticationInfo(username, user.getPassword(), realmName);
-    }
-    return null;
-}
+        String realmName <span class="token operator">=</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SimpleAuthenticationInfo</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> user<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> realmName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 </code></pre>
 <p>到目前为止，我们已经成功的为 Shiro 配置了 MD5 这种加密方式。<br>下面我们来测试一下，先重启项目，注册新的账号，然后等新账号登录。如下图所示，登录成功。</p>
@@ -705,33 +705,33 @@ protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) 
 <li>修改 <code>MyShiroRealm</code> 类中 <code>doGetAuthenticationInfo</code> 方法的返回值 <code>SimpleAuthenticationInfo</code> 的新建方法参数：盐</li>
 </ul>
 <p>修改注册用户的加密算法</p>
-<pre class=" language-Java"><code class="language-Java">String newpwd = new SimpleHash("MD5", password, ByteSource.Util.bytes(username)).toHex();
+<pre class=" language-java"><code class="language-java">String newpwd <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleHash</span><span class="token punctuation">(</span><span class="token string">"MD5"</span><span class="token punctuation">,</span> password<span class="token punctuation">,</span> ByteSource<span class="token punctuation">.</span>Util<span class="token punctuation">.</span><span class="token function">bytes</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<pre class=" language-Java"><code class="language-Java">
-@Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        //获取用户账号
-        String username = token.getPrincipal().toString();
+<pre class=" language-java"><code class="language-java">
+<span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> AuthenticationInfo <span class="token function">doGetAuthenticationInfo</span><span class="token punctuation">(</span>AuthenticationToken token<span class="token punctuation">)</span> <span class="token keyword">throws</span> AuthenticationException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//获取用户账号</span>
+        String username <span class="token operator">=</span> token<span class="token punctuation">.</span><span class="token function">getPrincipal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        User user = shiroService.getUserByUsername(username);
-        if (!ObjectUtils.isEmpty(user)) {
+        User user <span class="token operator">=</span> shiroService<span class="token punctuation">.</span><span class="token function">getUserByUsername</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-            /**
+            <span class="token comment" spellcheck="true">/**
              * 四个参数
              * principal：认证的实体信息，可以是username，也可以是数据库表对应的用户的实体对象
              * credentials：数据库中的密码（经过加密的密码）
              * credentialsSalt：盐值（使用用户名）
              * realmName：当前realm对象的name，调用父类的getName()方法即可
-             */
+             */</span>
 
-            String realmName = getName();
-            String credentials = user.getPassword();
-            ByteSource credentialsSalt = ByteSource.Util.bytes(username);
+            String realmName <span class="token operator">=</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            String credentials <span class="token operator">=</span> user<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ByteSource credentialsSalt <span class="token operator">=</span> ByteSource<span class="token punctuation">.</span>Util<span class="token punctuation">.</span><span class="token function">bytes</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            return new SimpleAuthenticationInfo(username, credentials, credentialsSalt, realmName);
-        }
-        return null;
-    }
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SimpleAuthenticationInfo</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> credentials<span class="token punctuation">,</span> credentialsSalt<span class="token punctuation">,</span> realmName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
 </code></pre>
 <h3 id="Bcrypt"><a href="#Bcrypt" class="headerlink" title="Bcrypt"></a>Bcrypt</h3><p>Shiro 框架没有内置 BCrypt 。需要我们引入新的库 <code>jBCrypt</code>:</p>
@@ -744,38 +744,38 @@ protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) 
 
 </code></pre>
 <p>在注册用户时修改加密方式,在 BCrypt 中我们不需要为每个用户分配不同的盐，只要使用 <code>BCrypt.gensalt()</code> 就可以生成盐。</p>
-<pre class=" language-Java"><code class="language-Java">
-public String encodeByBCrypt(String password) {
-    return BCrypt.hashpw(password, BCrypt.gensalt());
-}
+<pre class=" language-java"><code class="language-java">
+<span class="token keyword">public</span> String <span class="token function">encodeByBCrypt</span><span class="token punctuation">(</span>String password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> BCrypt<span class="token punctuation">.</span><span class="token function">hashpw</span><span class="token punctuation">(</span>password<span class="token punctuation">,</span> BCrypt<span class="token punctuation">.</span><span class="token function">gensalt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 </code></pre>
 <p>在 Shiro 配置文件 <code>ShiroConfig</code> 中为我们自定义的 <code>MyShiroRealm</code> Bean 添加凭证匹配器 <code>HashedCredentialsMatcher</code>。</p>
-<pre class=" language-Java"><code class="language-Java">
-/**
+<pre class=" language-java"><code class="language-java">
+<span class="token comment" spellcheck="true">/**
     * 自定义的Realm
-    */
-@Bean(name = "myShiroRealm")
-public MyShiroRealm myShiroRealm() {
-    MyShiroRealm myShiroRealm = new MyShiroRealm();
-    //配置单项hash
-    //myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+    */</span>
+<span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"myShiroRealm"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> MyShiroRealm <span class="token function">myShiroRealm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    MyShiroRealm myShiroRealm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyShiroRealm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//配置单项hash</span>
+    <span class="token comment" spellcheck="true">//myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());</span>
 
-    //配置 BCrypt
-    myShiroRealm.setCredentialsMatcher(new CredentialsMatcher() {
-        @Override
-        public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-            UsernamePasswordToken userToken = (UsernamePasswordToken) token;
-            //要验证的明文密码
-            String plaintext = new String(userToken.getPassword());
-            //数据库中的加密后的密文
-            String hashed = info.getCredentials().toString();
+    <span class="token comment" spellcheck="true">//配置 BCrypt</span>
+    myShiroRealm<span class="token punctuation">.</span><span class="token function">setCredentialsMatcher</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CredentialsMatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">doCredentialsMatch</span><span class="token punctuation">(</span>AuthenticationToken token<span class="token punctuation">,</span> AuthenticationInfo info<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            UsernamePasswordToken userToken <span class="token operator">=</span> <span class="token punctuation">(</span>UsernamePasswordToken<span class="token punctuation">)</span> token<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//要验证的明文密码</span>
+            String plaintext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>userToken<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//数据库中的加密后的密文</span>
+            String hashed <span class="token operator">=</span> info<span class="token punctuation">.</span><span class="token function">getCredentials</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            return BCrypt.checkpw(plaintext, hashed);
-        }
-    });
-    return myShiroRealm;
-}
+            <span class="token keyword">return</span> BCrypt<span class="token punctuation">.</span><span class="token function">checkpw</span><span class="token punctuation">(</span>plaintext<span class="token punctuation">,</span> hashed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> myShiroRealm<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 </code></pre>
 <p>到此为止，我们使用 BCrypt 算法加密了密码。如下图所示：</p>
