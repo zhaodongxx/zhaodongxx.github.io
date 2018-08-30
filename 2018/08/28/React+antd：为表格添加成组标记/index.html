@@ -486,7 +486,9 @@
         <p>最近在做前端开发的时候遇到一个需求：对后端传回的数据中满足条件的相邻行用符号连接起来，表示关联关系。我是个前端新人，因项目需要接手前端开发工作，为了实现这个需求颇费了一番功夫。现在记录下来方便后来者。</p>
 <p>这篇文章首先用原生CSS实现了这个需求，然后在React工程中的antd表格组件中实际应用。</p>
 <a id="more"></a>
-<h2 id="用CSS实现表格的成组标记"><a href="#用CSS实现表格的成组标记" class="headerlink" title="用CSS实现表格的成组标记"></a>用CSS实现表格的成组标记</h2><p>本例在相同国家的人名前加上成组标记</p>
+<h2 id="用CSS实现表格的成组标记"><a href="#用CSS实现表格的成组标记" class="headerlink" title="用CSS实现表格的成组标记"></a>用CSS实现表格的成组标记</h2><blockquote>
+<p>本文以在相同国家的人名前加上成组标记为例</p>
+</blockquote>
 <p><a href="https://codepen.io/zhaodongxx/pen/ZMBKpx" target="_blank" rel="noopener">CodoPen在线演示</a></p>
 <p>效果如下图所示<br><img src="/images/9_1.png" alt="效果"></p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
@@ -584,9 +586,7 @@
 <li>编写<code>rowClassName</code>函数，对每一行指定相应的类名</li>
 </ol>
 <p><a href="https://codepen.io/zhaodongxx/pen/vzyZxZ?editors=0110" target="_blank" rel="noopener">CodoPen在线演示</a></p>
-<blockquote>
-<p>js</p>
-</blockquote>
+<p><strong>js</strong></p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span>
     Table<span class="token punctuation">,</span>
     Divider<span class="token punctuation">,</span>
@@ -644,6 +644,8 @@
             flagObj<span class="token punctuation">[</span>e<span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'bottom flag'</span>
         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>preflag <span class="token operator">&amp;&amp;</span> nextflag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             flagObj<span class="token punctuation">[</span>e<span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'top flag'</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+          flagObj<span class="token punctuation">[</span>e<span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">' noflag'</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
@@ -679,9 +681,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
         rowClassName<span class="token operator">=</span><span class="token punctuation">{</span>handleRowClassName<span class="token punctuation">}</span>
     <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> mountNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<blockquote>
-<p>less</p>
-</blockquote>
+<p><strong>less</strong></p>
 <pre class=" language-less"><code class="language-less"><span class="token selector">.flag</span> <span class="token punctuation">{</span>
   <span class="token selector">.grp</span> <span class="token punctuation">{</span>
     <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
