@@ -549,7 +549,8 @@ git merge bugfix    #再合并修改bug的分支
 #6
 git push origin --tags  #推送所有标签
 </code></pre>
-<p><strong>关于分支合并和标签的归属，有点疑惑：打了标签v2.0的分支bugfix与主分支合并后，标签v2.0还存在吗？他指向的是哪次提交呢？有时间我会进行验证的</strong><br>经过测试我发现，tag并不属于某一个分支，所以在删除分支时，在该分支上打的标签一览存在，他指向的当前分支的上一次commit。标签更多的是一种指向某一次提交的快捷索引，所以虽然删除了fixbug分支，但是还是可以通过<code>git show &lt;tag name&gt;; git reset --hard commitID</code> 回滚到某一次提交，对历史版本进行再次修复。</p>
+<p><strong>关于分支合并和标签的归属，有点疑惑：打了标签v2.0的分支bugfix与主分支合并后，标签v2.0还存在吗？他指向的是哪次提交呢？有时间我会进行验证的</strong></p>
+<p>经过测试我发现，tag并不属于某一个分支，所以在删除分支时，在该分支上打的标签一览存在，他指向的当前分支的上一次commit。<br>标签更多的是一种指向某一次提交的快捷索引，所以虽然删除了fixbug分支，但是还是可以通过<code>git show &lt;tag name&gt;; git reset --hard commitID</code> 回滚到某一次提交，对历史版本进行再次修复。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="https://blog.csdn.net/fuchaosz/article/details/51698896" target="_blank" rel="noopener">[Git高级教程 (一)] 通过Tag标签回退版本修复bug</a></li>
 <li><a href="https://www.jianshu.com/p/517fcf0037d1" target="_blank" rel="noopener">Git教程笔记（五·标签管理）</a></li>
