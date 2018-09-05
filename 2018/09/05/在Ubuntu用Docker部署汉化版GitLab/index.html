@@ -37,7 +37,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="zhaodongxx">
-    <meta name="description" itemprop="description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
+    <meta name="description" itemprop="description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。
+GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
     <meta name="keywords" content=",Git,Ubuntu16.04,Docker,GitLab">
 
     <!-- Site Verification -->
@@ -69,7 +70,8 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="在Ubuntu用Docker部署汉化版GitLab | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
+    <meta property="og:description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。
+GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
     <meta property="og:article:tag" content="Git"> <meta property="og:article:tag" content="Ubuntu16.04"> <meta property="og:article:tag" content="Docker"> <meta property="og:article:tag" content="GitLab"> 
 
     
@@ -79,7 +81,8 @@
 
     <!-- The Twitter Card protocol -->
     <meta name="twitter:title" content="在Ubuntu用Docker部署汉化版GitLab | zhaodongxx&#39;s Blog">
-    <meta name="twitter:description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
+    <meta name="twitter:description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。
+GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://blog.zhaodongxx.top" />
@@ -116,7 +119,8 @@
     "url": "http://blog.zhaodongxx.top/2018/09/05/在Ubuntu用Docker部署汉化版GitLab/index.html",
     "datePublished": "9月 05, 2018",
     "dateModified": "9月 05, 2018",
-    "description": "项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。",
+    "description": "项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。
+GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://blog.zhaodongxx.top"
@@ -320,7 +324,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-硬件需求及软件版本"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1. 硬件需求及软件版本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-在Ubuntu系统安装Docker"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2. 在Ubuntu系统安装Docker</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-创建容器外挂目录"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3. 创建容器外挂目录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-启动GitLab容器"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">4. 启动GitLab容器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-配置GitLab"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">5. 配置GitLab</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用GitLab"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用GitLab</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第一次访问"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">第一次访问</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#BUG"><span class="post-toc-number">3.</span> <span class="post-toc-text">BUG</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-容器启动失败"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">1. 容器启动失败</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-克隆项目和上传代码一直需要输入密码"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">2. 克隆项目和上传代码一直需要输入密码</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运维"><span class="post-toc-number">4.</span> <span class="post-toc-text">运维</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重启gitlab"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">重启gitlab</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查看gitlab启动状态"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">查看gitlab启动状态</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#升级GitLab"><span class="post-toc-number">4.0.3.</span> <span class="post-toc-text">升级GitLab</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-硬件需求及软件版本"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1. 硬件需求及软件版本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-在Ubuntu系统安装Docker"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2. 在Ubuntu系统安装Docker</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-创建容器外挂目录"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3. 创建容器外挂目录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-启动GitLab容器"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">4. 启动GitLab容器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-配置GitLab"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">5. 配置GitLab</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用GitLab"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用GitLab</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第一次访问"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">第一次访问</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#BUG"><span class="post-toc-number">3.</span> <span class="post-toc-text">BUG</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运维"><span class="post-toc-number">4.</span> <span class="post-toc-text">运维</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -479,7 +483,8 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。<br>GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。</p>
+        <p>项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。</p>
+<p>GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。</p>
 <a id="more"></a>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我使用的Docker镜像是<a href="https://github.com/beginor/docker-gitlab-ce" target="_blank" rel="noopener">GitLab 中文社区版 Docker 镜像</a></p>
 <blockquote>
@@ -499,14 +504,16 @@
 <li>Docker: 17.03.2-ce</li>
 <li>GitLab: beginor/gitlab-ce:11.1.4-ce.0</li>
 </ul>
-<h4 id="2-在Ubuntu系统安装Docker"><a href="#2-在Ubuntu系统安装Docker" class="headerlink" title="2. 在Ubuntu系统安装Docker"></a>2. 在Ubuntu系统安装Docker</h4><p>在Ubuntu系统安装Docker一行代码就可以搞定。我刚开始搜索安装方法时，却发现大家的方法都很复杂，例如<a href="https://www.jianshu.com/p/265c1a6833ba" target="_blank" rel="noopener">https://www.jianshu.com/p/265c1a6833ba</a>。有知道其中区别的朋友，还请指教。</p>
+<h4 id="2-在Ubuntu系统安装Docker"><a href="#2-在Ubuntu系统安装Docker" class="headerlink" title="2. 在Ubuntu系统安装Docker"></a>2. 在Ubuntu系统安装Docker</h4><p>在Ubuntu系统安装Docker一行代码就可以搞定。我刚开始搜索安装方法时，却发现大家的方法都很复杂，例如<a href="https://www.jianshu.com/p/265c1a6833ba" target="_blank" rel="noopener">Ubuntu 16.04 安装 Docker</a>。有知道其中区别的朋友，还请指教。</p>
 <pre class=" language-shell"><code class="language-shell">apt install docker.io
 </code></pre>
 <p>安装后可以通过<code>docker -v</code>测试时候安装成功</p>
 <pre class=" language-shell"><code class="language-shell">root@vultr:~# docker -v
 Docker version 17.03.2-ce, build f5ec1e2
 </code></pre>
+<blockquote>
 <p>在Docker版本号中CE代表社区版，EE代表企业版</p>
+</blockquote>
 <h4 id="3-创建容器外挂目录"><a href="#3-创建容器外挂目录" class="headerlink" title="3. 创建容器外挂目录"></a>3. 创建容器外挂目录</h4><p><code>gitlab/gitlab-ce</code>容器需要三个目录，分别存放应用数据、日志和配置文件</p>
 <p>我们创建三个目录分别存放这些数据，便于GitLab的维护和迁移。即时是GitLab被我们玩坏了，只要这三个文件还存在，我们就可以很简单的重建</p>
 <pre class=" language-shell"><code class="language-shell">sudo mkdir -p /gitlab/data
@@ -565,13 +572,18 @@ docker restart gitlab
 </code></pre>
 <h2 id="使用GitLab"><a href="#使用GitLab" class="headerlink" title="使用GitLab"></a>使用GitLab</h2><h4 id="第一次访问"><a href="#第一次访问" class="headerlink" title="第一次访问"></a>第一次访问</h4><p>GitLab的访问地址是：<code>http://IP:8000/</code>。第一次访问会让用户修改密码，修改成功后就可以通过账号(root)和该密码登录GitLab。</p>
 <p>当然为了正常使用GitLab，添加SSH公钥是必须的。GitLab的使用方式和GitHub基本一致，不熟悉的朋友可以自行搜索教程</p>
-<h2 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h2><h4 id="1-容器启动失败"><a href="#1-容器启动失败" class="headerlink" title="1. 容器启动失败"></a>1. 容器启动失败</h4><p>有可能是服务器配置太低</p>
-<h4 id="2-克隆项目和上传代码一直需要输入密码"><a href="#2-克隆项目和上传代码一直需要输入密码" class="headerlink" title="2. 克隆项目和上传代码一直需要输入密码"></a>2. 克隆项目和上传代码一直需要输入密码</h4><p>没有修改GitLab的ssh端口，具体操作可以看上文 <strong>配置GitLab</strong></p>
-<h2 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h2><h4 id="重启gitlab"><a href="#重启gitlab" class="headerlink" title="重启gitlab"></a>重启gitlab</h4><pre class=" language-shell"><code class="language-shell">sudo docker restart gitlab
+<h2 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h2><p><strong>1. 容器启动失败</strong></p>
+<p>有可能是服务器配置太低</p>
+<p><strong>2. 克隆项目和上传代码一直需要输入密码</strong></p>
+<p>没有修改GitLab的ssh端口，具体操作可以看上文 <strong>配置GitLab</strong></p>
+<h2 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h2><p><strong>重启gitlab</strong> </p>
+<pre class=" language-shell"><code class="language-shell">sudo docker restart gitlab
 </code></pre>
-<h4 id="查看gitlab启动状态"><a href="#查看gitlab启动状态" class="headerlink" title="查看gitlab启动状态"></a>查看gitlab启动状态</h4><pre class=" language-shell"><code class="language-shell">sudo docker ps
+<p><strong>查看gitlab启动状态</strong></p>
+<pre class=" language-shell"><code class="language-shell">sudo docker ps
 </code></pre>
-<h4 id="升级GitLab"><a href="#升级GitLab" class="headerlink" title="升级GitLab"></a>升级GitLab</h4><p>查看GitHub上的开源项目<a href="https://github.com/beginor/docker-gitlab-ce" target="_blank" rel="noopener">GitLab 中文社区版 Docker 镜像</a></p>
+<p><strong>升级GitLab</strong></p>
+<p>查看GitHub上的开源项目<a href="https://github.com/beginor/docker-gitlab-ce" target="_blank" rel="noopener">GitLab 中文社区版 Docker 镜像</a></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="https://github.com/beginor/docker-gitlab-ce/blob/master/README.md" target="_blank" rel="noopener">beginor/docker-gitlab-ce_GitHub</a></li>
 <li><a href="http://blog.gezhiqiang.com/2017/03/01/gitlab-ce-install/" target="_blank" rel="noopener">GitLab CE 搭建小结</a> : 很详细，文末还介绍了写GitLab的使用技巧</li>
