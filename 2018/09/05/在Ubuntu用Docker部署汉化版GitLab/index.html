@@ -12,7 +12,7 @@
     
     <title>
         
-            Ubuntu16.04搭建Shadowsocks服务器 | 
+            在Ubuntu用Docker部署汉化版GitLab | 
         
         zhaodongxx&#39;s Blog
     </title>
@@ -37,8 +37,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="zhaodongxx">
-    <meta name="description" itemprop="description" content="罗马不是一天建成">
-    <meta name="keywords" content=",Ubuntu16.04,Shadowsocks">
+    <meta name="description" itemprop="description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
+    <meta name="keywords" content=",Git,Ubuntu16.04,Docker,GitLab">
 
     <!-- Site Verification -->
     
@@ -67,26 +67,26 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://blog.zhaodongxx.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Ubuntu16.04搭建Shadowsocks服务器 | zhaodongxx&#39;s Blog">
+    <meta property="og:title" content="在Ubuntu用Docker部署汉化版GitLab | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="罗马不是一天建成">
-    <meta property="og:article:tag" content="Ubuntu16.04"> <meta property="og:article:tag" content="Shadowsocks"> 
+    <meta property="og:description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
+    <meta property="og:article:tag" content="Git"> <meta property="og:article:tag" content="Ubuntu16.04"> <meta property="og:article:tag" content="Docker"> <meta property="og:article:tag" content="GitLab"> 
 
     
-        <meta property="article:published_time" content="3月 26, 2018" />
-        <meta property="article:modified_time" content="7月 18, 2018" />
+        <meta property="article:published_time" content="9月 05, 2018" />
+        <meta property="article:modified_time" content="9月 05, 2018" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="Ubuntu16.04搭建Shadowsocks服务器 | zhaodongxx&#39;s Blog">
-    <meta name="twitter:description" content="罗马不是一天建成">
+    <meta name="twitter:title" content="在Ubuntu用Docker部署汉化版GitLab | zhaodongxx&#39;s Blog">
+    <meta name="twitter:description" content="项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://blog.zhaodongxx.top" />
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html" />
+        <link rel="canonical" href="http://blog.zhaodongxx.top/2018/09/05/在Ubuntu用Docker部署汉化版GitLab/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -112,11 +112,11 @@
         },
         "description": "Hi, nice to meet you"
     },
-    "headline": "Ubuntu16.04搭建Shadowsocks服务器",
-    "url": "http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html",
-    "datePublished": "3月 26, 2018",
-    "dateModified": "7月 18, 2018",
-    "description": "罗马不是一天建成",
+    "headline": "在Ubuntu用Docker部署汉化版GitLab",
+    "url": "http://blog.zhaodongxx.top/2018/09/05/在Ubuntu用Docker部署汉化版GitLab/index.html",
+    "datePublished": "9月 05, 2018",
+    "dateModified": "9月 05, 2018",
+    "description": "项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://blog.zhaodongxx.top"
@@ -320,7 +320,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装Shadowsocks"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 安装Shadowsocks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-配置shadowsocks-json"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 配置shadowsocks.json</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-启动-amp-关闭"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 启动 &amp; 关闭</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-硬件需求及软件版本"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1. 硬件需求及软件版本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-在Ubuntu系统安装Docker"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2. 在Ubuntu系统安装Docker</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-创建容器外挂目录"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3. 创建容器外挂目录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-启动GitLab容器"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">4. 启动GitLab容器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-配置GitLab"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">5. 配置GitLab</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用GitLab"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用GitLab</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第一次访问"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">第一次访问</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#BUG"><span class="post-toc-number">3.</span> <span class="post-toc-text">BUG</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-容器启动失败"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">1. 容器启动失败</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-克隆项目和上传代码一直需要输入密码"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">2. 克隆项目和上传代码一直需要输入密码</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运维"><span class="post-toc-number">4.</span> <span class="post-toc-text">运维</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重启gitlab"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">重启gitlab</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查看gitlab启动状态"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">查看gitlab启动状态</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#升级GitLab"><span class="post-toc-number">4.0.3.</span> <span class="post-toc-text">升级GitLab</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -358,7 +358,7 @@
         
     
             <p class="article-headline-p">
-                Ubuntu16.04搭建Shadowsocks服务器
+                在Ubuntu用Docker部署汉化版GitLab
             </p>
         </div>
 
@@ -377,7 +377,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>zhaodongxx</strong>
-        <span>3月 26, 2018</span>
+        <span>9月 05, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -401,7 +401,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Shadowsocks/">Shadowsocks</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Ubuntu16-04/">Ubuntu16.04</a>
+        <a class="post_tag-link" href="/tags/Docker/">Docker</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Git/">Git</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/GitLab/">GitLab</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Ubuntu16-04/">Ubuntu16.04</a>
     </ul>
     
 
@@ -428,7 +428,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Ubuntu16.04搭建Shadowsocks服务器&url=http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=在Ubuntu用Docker部署汉化版GitLab&url=http://blog.zhaodongxx.top/2018/09/05/在Ubuntu用Docker部署汉化版GitLab/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -437,7 +437,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Ubuntu16.04搭建Shadowsocks服务器&url=http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html&via=zhaodongxx" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=在Ubuntu用Docker部署汉化版GitLab&url=http://blog.zhaodongxx.top/2018/09/05/在Ubuntu用Docker部署汉化版GitLab/index.html&via=zhaodongxx" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -446,7 +446,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhaodongxx.top/2018/09/05/在Ubuntu用Docker部署汉化版GitLab/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -455,7 +455,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.zhaodongxx.top/2018/09/05/在Ubuntu用Docker部署汉化版GitLab/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -479,45 +479,107 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="1-安装Shadowsocks"><a href="#1-安装Shadowsocks" class="headerlink" title="1. 安装Shadowsocks"></a>1. 安装Shadowsocks</h2><pre><code>apt-get update
-//安装python的包管理工具
-apt install python-pip
-//升级pip
-pip install --upgrade pip
-pip install setuptools
-//安装shadowsocks
-pip install shadowsocks
-</code></pre><h2 id="2-配置shadowsocks-json"><a href="#2-配置shadowsocks-json" class="headerlink" title="2. 配置shadowsocks.json"></a>2. 配置shadowsocks.json</h2><p>新建配置文件<code>shadowsocks.json</code>,路径<code>/home/ss/shadowsocks.json</code></p>
-<pre><code>
-mkdir ss
-cd ss
-sudo vim shadowsocks.json
-
-</code></pre><p>格式参考<a href="https://github.com/shadowsocks/shadowsocks/wiki/Configuration-via-Config-File" target="_blank" rel="noopener">github官方实例</a></p>
-<pre class=" language-json"><code class="language-json">
-<span class="token punctuation">{</span>                                      
-        <span class="token property">"server"</span><span class="token operator">:</span><span class="token string">"you_server_ip"</span><span class="token punctuation">,</span>    
-        <span class="token property">"port_password"</span><span class="token operator">:</span><span class="token punctuation">{</span>              
-                <span class="token property">"8388"</span><span class="token operator">:</span><span class="token string">"you_password"</span><span class="token punctuation">,</span>
-                <span class="token property">"8389"</span><span class="token operator">:</span><span class="token string">"you_password"</span><span class="token punctuation">,</span>
-                <span class="token property">"8390"</span><span class="token operator">:</span><span class="token string">"you_password"</span><span class="token punctuation">,</span>
-                <span class="token property">"8391"</span><span class="token operator">:</span><span class="token string">"you_password"</span><span class="token punctuation">,</span>
-                <span class="token property">"8392"</span><span class="token operator">:</span><span class="token string">"you_password"</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span>                             
-        <span class="token property">"localhost_address"</span><span class="token operator">:</span><span class="token string">"127.0.0.1"</span>
-        <span class="token property">"localhost"</span><span class="token operator">:</span><span class="token number">1080</span><span class="token punctuation">,</span>              
-        <span class="token property">"timeout"</span><span class="token operator">:</span><span class="token number">300</span><span class="token punctuation">,</span>                 
-        <span class="token property">"method"</span><span class="token operator">:</span><span class="token string">"aes-256-cfb"</span><span class="token punctuation">,</span>        
-        <span class="token property">"fast_open"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>             
-        <span class="token property">"workers"</span><span class="token operator">:</span><span class="token number">100</span>                  
-<span class="token punctuation">}</span>     
-
+        <p>项目的开发通常都离不开对代码的版本管理。简单的方式可以在内网搭建一个仓库，然后添加各个组员的公钥来共同开发。这种方式不仅不利于管理和维护，而且功能过于单一。我们很希望有像GitHub这样的平台服务，功能齐全且好维护。但由于GFW的原因，有时候访问延迟过大。更重要的是，github免费版只支持开源项目，私有项目需要付费，而且比较昂贵，并不适合公司的项目。<br>GitLab 是一个类似与GitHub的项目，功能十分强大且界面美观，支持代码管理、issue管理、代码review和CI等功能。它提供免费的社区版和付费版，社区版足够满足我们的项目需求。本篇文章我将介绍GitLab社区版的安装和配置。</p>
+<a id="more"></a>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我使用的Docker镜像是<a href="https://github.com/beginor/docker-gitlab-ce" target="_blank" rel="noopener">GitLab 中文社区版 Docker 镜像</a></p>
+<blockquote>
+<p>基于 GitLab 官方社区版 Docker 镜像制作的中文 Docker 镜像， 汉化补丁来自网友 larryli (8.8.5之前)， 后续由网友 xhang 维护。<br>由于汉化工作需要大量的人力， 所以中文版的版本会比官方的版本稍低， 如果刻意最求最新版， 请使用官方的 GitLab Docker 镜像。</p>
+</blockquote>
+<p>后续的升级可以参考该项目的<a href="https://github.com/beginor/docker-gitlab-ce/blob/master/README.md" target="_blank" rel="noopener">readme.md</a></p>
+<h4 id="1-硬件需求及软件版本"><a href="#1-硬件需求及软件版本" class="headerlink" title="1. 硬件需求及软件版本"></a>1. 硬件需求及软件版本</h4><p><strong>硬件需求</strong></p>
+<ul>
+<li>CPU: 2核 </li>
+<li>内存: 4G内存</li>
+<li>硬盘: 5-10G的硬盘存储</li>
+</ul>
+<p>不满足以上配置，在使用中要么会比较慢，要么会报500错误。甚至部署失败，我第一次在我用于翻墙的低配服务器(1核、1G内存)上部署GitLab，启动失败。</p>
+<p><strong>软件版本</strong></p>
+<ul>
+<li>系统: Ubuntu16.04</li>
+<li>Docker: 17.03.2-ce</li>
+<li>GitLab: beginor/gitlab-ce:11.1.4-ce.0</li>
+</ul>
+<h4 id="2-在Ubuntu系统安装Docker"><a href="#2-在Ubuntu系统安装Docker" class="headerlink" title="2. 在Ubuntu系统安装Docker"></a>2. 在Ubuntu系统安装Docker</h4><p>在Ubuntu系统安装Docker一行代码就可以搞定。我刚开始搜索安装方法时，却发现大家的方法都很复杂，例如<a href="https://www.jianshu.com/p/265c1a6833ba" target="_blank" rel="noopener">https://www.jianshu.com/p/265c1a6833ba</a>。有知道其中区别的朋友，还请指教。</p>
+<pre class=" language-shell"><code class="language-shell">apt install docker.io
 </code></pre>
-<h2 id="3-启动-amp-关闭"><a href="#3-启动-amp-关闭" class="headerlink" title="3. 启动 &amp; 关闭"></a>3. 启动 &amp; 关闭</h2><p>后台启动</p>
-<pre><code>ssserver -c /home/ss/shadowsocks.json -d start
-</code></pre><p>关闭</p>
-<pre><code>ssserver -c /home/ss/shadowsocks.json -d stop
+<p>安装后可以通过<code>docker -v</code>测试时候安装成功</p>
+<pre class=" language-shell"><code class="language-shell">root@vultr:~# docker -v
+Docker version 17.03.2-ce, build f5ec1e2
 </code></pre>
+<p>在Docker版本号中CE代表社区版，EE代表企业版</p>
+<h4 id="3-创建容器外挂目录"><a href="#3-创建容器外挂目录" class="headerlink" title="3. 创建容器外挂目录"></a>3. 创建容器外挂目录</h4><p><code>gitlab/gitlab-ce</code>容器需要三个目录，分别存放应用数据、日志和配置文件</p>
+<p>我们创建三个目录分别存放这些数据，便于GitLab的维护和迁移。即时是GitLab被我们玩坏了，只要这三个文件还存在，我们就可以很简单的重建</p>
+<pre class=" language-shell"><code class="language-shell">sudo mkdir -p /gitlab/data
+
+sudo mkdir -p /gitlab/logs
+
+sudo mkdir -p /gitlab/config
+</code></pre>
+<h4 id="4-启动GitLab容器"><a href="#4-启动GitLab容器" class="headerlink" title="4. 启动GitLab容器"></a>4. 启动GitLab容器</h4><pre class=" language-shell"><code class="language-shell"> sudo docker run --detach \
+    --publish 8443:443 --publish 8000:80 --publish 2222:22 \
+    --name gitlab \
+    --restart always \
+    --volume /gitlab/config:/etc/gitlab \
+    --volume /gitlab/logs:/var/log/gitlab \
+    --volume /gitlab/data:/var/opt/gitlab \
+    -log-driver=none \
+    beginor/gitlab-ce:11.1.4-ce.0
+</code></pre>
+<p><strong>参数说明</strong></p>
+<ul>
+<li>–detach   设置容器后台运行</li>
+<li>–publish  暴露 https、http和ssh端口,关于端口下文会细说</li>
+<li>–name     容器名称</li>
+<li>–restart always  每次启动容器就重启GitLab</li>
+<li>–volume 设置GitLab数据挂载点</li>
+</ul>
+<p>第一次启动容器会很慢，需要三分钟左右。可以随时通过<code>docker ps</code> 查看启动进度。当<code>STATUS</code>由<code>starting</code>变为<code>health</code>时,就说明启动成功了。</p>
+<h4 id="5-配置GitLab"><a href="#5-配置GitLab" class="headerlink" title="5. 配置GitLab"></a>5. 配置GitLab</h4><p>现在就可以通过地址：<code>http://IP:8000</code>访问GitLab,但是为了正常使用，我们还需要配置GitLab。<br>我们需要修改三个参数：</p>
+<ul>
+<li>external_url </li>
+<li>ssh 端口</li>
+<li>nginx监听端口</li>
+</ul>
+<p>GitLab的配置文件在我们外挂的磁盘下<code>/gitlab/config/gitlab.rb</code></p>
+<p><strong>修改external_url</strong></p>
+<pre class=" language-shell"><code class="language-shell">sudo vim /gitlab/config/gitlab.rb
+# 可以通过`/`搜索需要修改的参数
+external_url 'http://IP:8000'   # IP填写GitLab部署的服务器的IP
+</code></pre>
+<p><strong>修改ssh端口</strong></p>
+<blockquote>
+<p>如果不修改ssh的端口，clone和提交代码时一直需要输入密码。<br>因为通过ssh链接gitlab时默认访问的是22端口，但是使用docker部署，22端口在宿主机一直被占用，所以映射为2222端口，需要修改gitlab配置文件</p>
+</blockquote>
+<pre class=" language-shell"><code class="language-shell">### GitLab Shell settings for GitLab
+gitlab_rails['gitlab_shell_ssh_port'] = 2222
+# gitlab_rails['gitlab_shell_git_timeout'] = 800
+</code></pre>
+<p><strong>修改nginx监听的端口</strong></p>
+<pre><code>nginx[&#39;listen_port&#39;] = 80
+</code></pre><blockquote>
+<p>更多与端口相关的知识参考<a href="http://blog.gezhiqiang.com/2017/03/01/gitlab-ce-install/" target="_blank" rel="noopener">GitLab CE 搭建小结</a> <strong>external_url 设置</strong> 到 <strong>修改 ssh 端口</strong>的内容</p>
+</blockquote>
+<p><strong>到此时，我们就完成了通过Docker方式安装GitLab的所有工作，重启容器即可使用</strong></p>
+<pre class=" language-shell"><code class="language-shell">#重启容器
+docker restart gitlab
+</code></pre>
+<h2 id="使用GitLab"><a href="#使用GitLab" class="headerlink" title="使用GitLab"></a>使用GitLab</h2><h4 id="第一次访问"><a href="#第一次访问" class="headerlink" title="第一次访问"></a>第一次访问</h4><p>GitLab的访问地址是：<code>http://IP:8000/</code>。第一次访问会让用户修改密码，修改成功后就可以通过账号(root)和该密码登录GitLab。</p>
+<p>当然为了正常使用GitLab，添加SSH公钥是必须的。GitLab的使用方式和GitHub基本一致，不熟悉的朋友可以自行搜索教程</p>
+<h2 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h2><h4 id="1-容器启动失败"><a href="#1-容器启动失败" class="headerlink" title="1. 容器启动失败"></a>1. 容器启动失败</h4><p>有可能是服务器配置太低</p>
+<h4 id="2-克隆项目和上传代码一直需要输入密码"><a href="#2-克隆项目和上传代码一直需要输入密码" class="headerlink" title="2. 克隆项目和上传代码一直需要输入密码"></a>2. 克隆项目和上传代码一直需要输入密码</h4><p>没有修改GitLab的ssh端口，具体操作可以看上文 <strong>配置GitLab</strong></p>
+<h2 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h2><h4 id="重启gitlab"><a href="#重启gitlab" class="headerlink" title="重启gitlab"></a>重启gitlab</h4><pre class=" language-shell"><code class="language-shell">sudo docker restart gitlab
+</code></pre>
+<h4 id="查看gitlab启动状态"><a href="#查看gitlab启动状态" class="headerlink" title="查看gitlab启动状态"></a>查看gitlab启动状态</h4><pre class=" language-shell"><code class="language-shell">sudo docker ps
+</code></pre>
+<h4 id="升级GitLab"><a href="#升级GitLab" class="headerlink" title="升级GitLab"></a>升级GitLab</h4><p>查看GitHub上的开源项目<a href="https://github.com/beginor/docker-gitlab-ce" target="_blank" rel="noopener">GitLab 中文社区版 Docker 镜像</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://github.com/beginor/docker-gitlab-ce/blob/master/README.md" target="_blank" rel="noopener">beginor/docker-gitlab-ce_GitHub</a></li>
+<li><a href="http://blog.gezhiqiang.com/2017/03/01/gitlab-ce-install/" target="_blank" rel="noopener">GitLab CE 搭建小结</a> : 很详细，文末还介绍了写GitLab的使用技巧</li>
+<li><a href="https://blog.csdn.net/csdn_duomaomao/article/details/77972396" target="_blank" rel="noopener">以容器的方式运行GitLab</a></li>
+<li><a href="https://www.jianshu.com/p/24959481340e" target="_blank" rel="noopener">用Docker安装Gitlab</a></li>
+<li><a href="https://www.centos.bz/2017/10/docker%E9%95%9C%E5%83%8F%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1/" target="_blank" rel="noopener">docker镜像搭建gitlab服务</a></li>
+</ul>
+
     
 
     
@@ -538,21 +600,13 @@ sudo vim shadowsocks.json
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/03/27/Window下的生产力工具/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2018/03/25/hello-world/" id="post_nav-older" class="next-content">
+        <a href="/2018/09/03/Git笔记之标签/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
