@@ -520,11 +520,11 @@ sudo vim ss.json
 <span class="token punctuation">}</span>
 
 </code></pre>
-<h2 id="3-启动-amp-关闭"><a href="#3-启动-amp-关闭" class="headerlink" title="3. 启动 &amp; 关闭"></a>3. 启动 &amp; 关闭</h2><p>后台启动</p>
-<pre><code>ssserver -c /ss/ss.json -d start
-</code></pre><p>关闭</p>
-<pre><code>ssserver -c /ss/ss.json -d stop
-</code></pre><h2 id="4-有用命令"><a href="#4-有用命令" class="headerlink" title="4. 有用命令"></a>4. 有用命令</h2><ul>
+<h2 id="3-启动-amp-关闭"><a href="#3-启动-amp-关闭" class="headerlink" title="3. 启动 &amp; 关闭"></a>3. 启动 &amp; 关闭</h2><ul>
+<li><strong>后台启动</strong>：<code>ssserver -c /ss/ss.json -d start</code></li>
+<li><strong>关闭</strong>：<code>ssserver -c /ss/ss.json -d stop</code></li>
+</ul>
+<h2 id="4-有用命令"><a href="#4-有用命令" class="headerlink" title="4. 有用命令"></a>4. 有用命令</h2><ul>
 <li><strong>杀死占用端口的多个进程</strong> <code>sudo kill -9 $(lsof -i:端口号 -t)</code></li>
 </ul>
 
