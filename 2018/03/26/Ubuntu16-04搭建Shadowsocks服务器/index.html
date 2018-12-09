@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="3月 26, 2018" />
-        <meta property="article:modified_time" content="7月 18, 2018" />
+        <meta property="article:modified_time" content="12月 09, 2018" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "Ubuntu16.04搭建Shadowsocks服务器",
     "url": "http://blog.zhaodongxx.top/2018/03/26/Ubuntu16-04搭建Shadowsocks服务器/index.html",
     "datePublished": "3月 26, 2018",
-    "dateModified": "7月 18, 2018",
+    "dateModified": "12月 09, 2018",
     "description": "罗马不是一天建成",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -320,7 +320,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装Shadowsocks"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 安装Shadowsocks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-配置shadowsocks-json"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 配置shadowsocks.json</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-启动-amp-关闭"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 启动 &amp; 关闭</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装Shadowsocks"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 安装Shadowsocks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-配置shadowsocks-json"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 配置shadowsocks.json</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-启动-amp-关闭"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 启动 &amp; 关闭</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-有用命令"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 有用命令</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -479,7 +479,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="1-安装Shadowsocks"><a href="#1-安装Shadowsocks" class="headerlink" title="1. 安装Shadowsocks"></a>1. 安装Shadowsocks</h2><pre><code>apt-get update
+        <h2 id="1-安装Shadowsocks"><a href="#1-安装Shadowsocks" class="headerlink" title="1. 安装Shadowsocks"></a>1. 安装Shadowsocks</h2><pre class=" language-shell"><code class="language-shell">apt-get update
 //安装python的包管理工具
 apt install python-pip
 //升级pip
@@ -487,11 +487,15 @@ pip install --upgrade pip
 pip install setuptools
 //安装shadowsocks
 pip install shadowsocks
-</code></pre><h2 id="2-配置shadowsocks-json"><a href="#2-配置shadowsocks-json" class="headerlink" title="2. 配置shadowsocks.json"></a>2. 配置shadowsocks.json</h2><p>新建配置文件<code>shadowsocks.json</code>,路径<code>/home/ss/shadowsocks.json</code></p>
-<pre><code>
+</code></pre>
+<blockquote>
+<p>在安装升级pip之后，使用pip出现<code>ImportError: cannot import name main</code>可参考<a href="https://www.cnblogs.com/white-the-Alan/p/8900554.html" target="_blank" rel="noopener">这篇文章</a></p>
+</blockquote>
+<h2 id="2-配置shadowsocks-json"><a href="#2-配置shadowsocks-json" class="headerlink" title="2. 配置shadowsocks.json"></a>2. 配置shadowsocks.json</h2><p>新建配置文件<code>ss.json</code>,路径<code>/ss/ss.json</code></p>
+<pre><code>cd /
 mkdir ss
 cd ss
-sudo vim shadowsocks.json
+sudo vim ss.json
 
 </code></pre><p>格式参考<a href="https://github.com/shadowsocks/shadowsocks/wiki/Configuration-via-Config-File" target="_blank" rel="noopener">github官方实例</a></p>
 <pre class=" language-json"><code class="language-json">
@@ -504,20 +508,23 @@ sudo vim shadowsocks.json
                 <span class="token property">"8391"</span><span class="token operator">:</span><span class="token string">"you_password"</span><span class="token punctuation">,</span>
                 <span class="token property">"8392"</span><span class="token operator">:</span><span class="token string">"you_password"</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>                             
-        <span class="token property">"localhost_address"</span><span class="token operator">:</span><span class="token string">"127.0.0.1"</span>
+        <span class="token property">"localhost_address"</span><span class="token operator">:</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span>
         <span class="token property">"localhost"</span><span class="token operator">:</span><span class="token number">1080</span><span class="token punctuation">,</span>              
         <span class="token property">"timeout"</span><span class="token operator">:</span><span class="token number">300</span><span class="token punctuation">,</span>                 
         <span class="token property">"method"</span><span class="token operator">:</span><span class="token string">"aes-256-cfb"</span><span class="token punctuation">,</span>        
         <span class="token property">"fast_open"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>             
         <span class="token property">"workers"</span><span class="token operator">:</span><span class="token number">100</span>                  
-<span class="token punctuation">}</span>     
+<span class="token punctuation">}</span>
 
 </code></pre>
 <h2 id="3-启动-amp-关闭"><a href="#3-启动-amp-关闭" class="headerlink" title="3. 启动 &amp; 关闭"></a>3. 启动 &amp; 关闭</h2><p>后台启动</p>
-<pre><code>ssserver -c /home/ss/shadowsocks.json -d start
+<pre><code>ssserver -c /ss/ss.json -d start
 </code></pre><p>关闭</p>
-<pre><code>ssserver -c /home/ss/shadowsocks.json -d stop
-</code></pre>
+<pre><code>ssserver -c /ss/ss.json -d stop
+</code></pre><h2 id="4-有用命令"><a href="#4-有用命令" class="headerlink" title="4. 有用命令"></a>4. 有用命令</h2><ul>
+<li><strong>杀死占用端口的多个进程</strong> <code>sudo kill -9 $(lsof -i:端口号 -t)</code></li>
+</ul>
+
     
 
     
