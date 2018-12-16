@@ -344,7 +344,7 @@ SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分�
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Maven中获得编译时间"><span class="post-toc-number">1.</span> <span class="post-toc-text">Maven中获得编译时间</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用Maven属性渲染application-yml"><span class="post-toc-number">2.</span> <span class="post-toc-text">用Maven属性渲染application.yml</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#提供接口"><span class="post-toc-number">3.</span> <span class="post-toc-text">提供接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试"><span class="post-toc-number">4.</span> <span class="post-toc-text">测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#maven-build-timestamp时区错误解决方案"><span class="post-toc-number">5.</span> <span class="post-toc-text">maven.build.timestamp时区错误解决方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#把时间戳加到包名"><span class="post-toc-number">6.</span> <span class="post-toc-text">把时间戳加到包名</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Maven中获得编译时间"><span class="post-toc-number">1.</span> <span class="post-toc-text">Maven中获得编译时间</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用Maven属性渲染application-yml"><span class="post-toc-number">2.</span> <span class="post-toc-text">用Maven属性渲染application.yml</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#提供接口"><span class="post-toc-number">3.</span> <span class="post-toc-text">提供接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试"><span class="post-toc-number">4.</span> <span class="post-toc-text">测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#maven-build-timestamp时区错误解决方案"><span class="post-toc-number">5.</span> <span class="post-toc-text">maven.build.timestamp时区错误解决方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#把时间戳加到包名"><span class="post-toc-number">6.</span> <span class="post-toc-text">把时间戳加到包名</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number"></span> <span class="post-toc-text">参考资料</span></a>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -624,6 +624,9 @@ SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分�
   build:
     time: @build.time@
 </code></pre>
+<p>IDEA 编译项目不会调用 maven 生命周期，导致安装的 plugin 不被执行。虽然 maven 自带变量可以被替换，但是自定义变量却不会被替换。</p>
+<p>可以将 IDEA 的 <code>Build</code> 与 <code>maven goal</code> 绑定起来，在 build 之前执行 <code>maven goal</code>，IDEA 右侧 <code>Maven Projects</code> -&gt; <code>LifeCycle</code> -&gt; <code>compile</code> 勾选 <code>Execute After Build</code>和<code>Execute After Rebuild</code>  如下图</p>
+<p><img src="http://fengjian.info/wp-content/uploads/2017/04/20170401_151911.png" alt="png"></p>
 <h3 id="把时间戳加到包名"><a href="#把时间戳加到包名" class="headerlink" title="把时间戳加到包名"></a>把时间戳加到包名</h3><p>两种方法不要重复，否则</p>
 <p>方法一：<strong>把时间戳加到版本号</strong></p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span><span class="token punctuation">></span></span>
@@ -643,6 +646,9 @@ SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分�
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
 
 </code></pre>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://fengjian.info/?p=830" target="_blank" rel="noopener">maven 打包时间戳问题</a></li>
+</ul>
 
     
 
@@ -663,14 +669,6 @@ SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分�
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
-    
-        <a href="/2018/12/16/SpringBoot获得Maven-pom中版本信息和编译时间戳/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
     
 
     <!-- Section Spacer -->
@@ -807,7 +805,7 @@ SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分�
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">17</span>
+                <span class="sidebar-badge">16</span>
             </a>
         </li>
         
