@@ -37,7 +37,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="zhaodongxx">
-    <meta name="description" itemprop="description" content="这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。">
+    <meta name="description" itemprop="description" content="这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。
+SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分为以下步骤：
+
+在pom文件中获取maven的build time
+配置pom，用maven中的属性渲染资源文件application.yml
+提供接口
+">
     <meta name="keywords" content=",SpringBoot,Java,Spring,Maven">
 
     <!-- Site Verification -->
@@ -69,7 +75,13 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="SpringBoot获得Maven-pom中版本信息和编译时间戳 | zhaodongxx&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。">
+    <meta property="og:description" content="这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。
+SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分为以下步骤：
+
+在pom文件中获取maven的build time
+配置pom，用maven中的属性渲染资源文件application.yml
+提供接口
+">
     <meta property="og:article:tag" content="SpringBoot"> <meta property="og:article:tag" content="Java"> <meta property="og:article:tag" content="Spring"> <meta property="og:article:tag" content="Maven"> 
 
     
@@ -79,7 +91,13 @@
 
     <!-- The Twitter Card protocol -->
     <meta name="twitter:title" content="SpringBoot获得Maven-pom中版本信息和编译时间戳 | zhaodongxx&#39;s Blog">
-    <meta name="twitter:description" content="这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。">
+    <meta name="twitter:description" content="这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。
+SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分为以下步骤：
+
+在pom文件中获取maven的build time
+配置pom，用maven中的属性渲染资源文件application.yml
+提供接口
+">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://blog.zhaodongxx.top" />
@@ -116,7 +134,13 @@
     "url": "http://blog.zhaodongxx.top/2018/12/16/SpringBoot获得Maven-pom中版本信息和编译时间戳/index.html",
     "datePublished": "12月 16, 2018",
     "dateModified": "12月 16, 2018",
-    "description": "这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。",
+    "description": "这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。
+SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分为以下步骤：
+
+在pom文件中获取maven的build time
+配置pom，用maven中的属性渲染资源文件application.yml
+提供接口
+",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://blog.zhaodongxx.top"
@@ -479,12 +503,14 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。<br><a id="more"></a><br>SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分为以下步骤：</p>
+        <p>这篇文章首先介绍了在SpringBoot中如何获得项目的编译时间和版本号，并向外提供接口，然后介绍了介绍了新版maven获得时间戳时区错误的解决方案，最后介绍了把时间戳加到包名的两种方法。</p>
+<p>SpringBoot项目获得编译时间戳和版本号，然后提供接口大概分为以下步骤：</p>
 <ul>
 <li>在pom文件中获取maven的build time</li>
 <li>配置pom，用maven中的属性渲染资源文件<code>application.yml</code></li>
 <li>提供接口</li>
 </ul>
+<a id="more"></a>
 <h3 id="Maven中获得编译时间"><a href="#Maven中获得编译时间" class="headerlink" title="Maven中获得编译时间"></a>Maven中获得编译时间</h3><p>在 pom文件<code>properties</code> 中添加两个属性</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">></span></span>
     <span class="token comment" spellcheck="true">&lt;!--maven.build.timestamp保存了maven编译时间戳--></span>
@@ -638,14 +664,6 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/12/16/SpringBoot获得Maven-pom中版本信息和编译时间戳/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
@@ -781,7 +799,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">17</span>
+                <span class="sidebar-badge">16</span>
             </a>
         </li>
         
